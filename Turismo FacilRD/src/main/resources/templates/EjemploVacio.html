@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="~{layout::layout(~{::title},~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi pagina</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <h2 th:text="'Bienvenido :'+ ${session.get('usuario').get('nombre')}"></h2>
+    </div>
+    <!--    aqui pongo mis js personalizados para mi pagina debe de sustituise el nombre mi_pagina.js por el nombre real del archivo-->
+<!--    <script th:src="@{assets/app/home.js}"></script>-->
+    <!--    aqui pongo mis js personalizados para mi pagina debe de sustituise el nombre mi_pagina.js por el nombre real del archivo-->
+</section>
+</body>
+</html>

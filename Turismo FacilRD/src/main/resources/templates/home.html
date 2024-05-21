@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="layout::layout(~{::title}, ~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row" th:each="tour : ${tourTodos}">
+            <div class="span8">
+                <div class="row">
+                    <div class="span8">
+                        <h4><strong><a href="#" th:text="${tour.nombre}">Nombre del tour</a></strong></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="span2">
+                            <a href="#" class="thumbnail">
+                                <img style="width: 200px" src="https://gastroturismord.com/wp-content/uploads/2023/02/hyatt-zilara-cap-cana.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="span6">
+                            <p th:text="${tour.descripcion}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span8">
+                        <p></p>
+                        <p>
+                            <i class="icon-user"></i> Por <a href="#" th:text="${tour.autor} + '|' + ${tour.fecha}"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <script th:src="@{/assets/app/home.js}"></script>
+</section>
+</body>
+</html>

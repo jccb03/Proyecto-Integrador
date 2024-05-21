@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout::layout(~{::title},~{::section})}"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Tour</title>
+</head>
+<body>
+<section class="container">
+    <div class="row">
+        <div class="col-12" style="text-align: right;margin-top: 10px">
+            <button class="btn btn-success btn-sm" onclick="agregar()">Agregar</button>
+        </div>
+        <div class="col-12" style="margin-top: 10px">
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">NOMBRE TOUR</th>
+                    <th scope="col">DESCRIPCION</th>
+                    <th scope="col">FECHA DE CREACION</th>
+                    <th scope="col">AGENCIA</th>
+                    <th scope="col">ACCION</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tour : ${toursList}">
+                    <td th:text="${tour.NOMBRE}"></td>
+                    <td th:text="${tour.DESCRIPCION}"></td>
+                    <td th:text="${tour.FECHA}"></td>
+                    <td th:text="${tour.AGENCIA}"></td>
+                    <td style="display: flex; align-items: center;">
+
+                        <div>
+                            <button class="btn btn-warning btn-sm" th:onclick="'editar('+${tour.ID}+')'">Editar</button>
+                            <button class="btn btn-danger btn-sm" th:onclick="'borrar('+${tour.ID}+')'">Eliminar</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="modalTour" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="encabezado">Editar Tour</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" id="nombre" name="nombre" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Descripcion</label>
+                                <textarea id="descripcion" name="descripcion" class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Agencia</label>
+                                <textarea id="agencia" name="agencia" class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-group">-->
+<!--                                <label>Fecha</label>-->
+<!--                                <input type="date" id="fecha" name="fecha" class="form-control" required>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="salvar()">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--    aqui pongo mis js personalizados para mi pagina debe de sustituise el nombre mi_pagina.js por el nombre real del archivo-->
+        <script th:src="@{assets/app/tour.js}"></script>
+
+    </div> <!--    aqui pongo mis js personalizados para mi pagina debe de sustituise el nombre mi_pagina.js por el nombre real del archivo-->
+</section>
+</body>
+</html>
