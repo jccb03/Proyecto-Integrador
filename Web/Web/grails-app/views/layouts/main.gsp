@@ -59,7 +59,8 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+%{--                        <img src="assets/images/logo.png" alt="">--}%
+                        <asset:image src="assets/images/logo.png" alt="" />
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
@@ -67,8 +68,8 @@
                         <li><a href="index.html" class="active">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="deals.html">Deals</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
-                        <li><a href="reservation.html">Book Yours</a></li>
+                        <li><a href="reservation.html">Reservaciones</a></li>
+                        <li><a href="reservation.html">Reserva ya</a></li>
                         <li><a href="./login">Login</a></li>
                     </ul>
                     <a class='menu-trigger'>
@@ -84,12 +85,6 @@
 <g:layoutBody/>
 <footer>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved.
-                    <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a> Distribution: <a href="https://themewagon.com target="_blank" >ThemeWagon</a></p>
-            </div>
-        </div>
     </div>
 </footer>
 
