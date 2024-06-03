@@ -25,9 +25,9 @@
             <div id="top-banner-1" class="banner">
                 <div class="banner-inner-wrapper header-text">
                     <div class="main-caption">
-                        <h2>Take a Glimpse Into The Beautiful Country Of:</h2>
-                        <h1>Caribbean</h1>
-                        <div class="border-button"><a href="about.html">Go There</a></div>
+                        <h2>Toma una vista al hermoso Caribe:</h2>
+                        <h1>Caribe</h1>
+                        <div class="border-button"><a href="about.html">Ir</a></div>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -61,9 +61,9 @@
             <div id="top-banner-2" class="banner">
                 <div class="banner-inner-wrapper header-text">
                     <div class="main-caption">
-                        <h2>Take a Glimpse Into The Beautiful Country Of:</h2>
-                        <h1>Switzerland</h1>
-                        <div class="border-button"><a href="about.html">Go There</a></div>
+                        <h2>Visita este maravilloso pueblo</h2>
+                        <h1>Puerto Plata</h1>
+                        <div class="border-button"><a href="about.html">Ir</a></div>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -97,9 +97,9 @@
             <div id="top-banner-3" class="banner">
                 <div class="banner-inner-wrapper header-text">
                     <div class="main-caption">
-                        <h2>Take a Glimpse Into The Beautiful Country Of:</h2>
-                        <h1>France</h1>
-                        <div class="border-button"><a href="about.html">Go There</a></div>
+                        <h2>Visita los charcos de:</h2>
+                        <h1>Río San Juan</h1>
+                        <div class="border-button"><a href="about.html">Ir</a></div>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -311,12 +311,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <h2>Are You Looking To Travel ?</h2>
-                <h4>Make A Reservation By Clicking The Button</h4>
+                <h2>¿Estás buscando hacer excursiones locales?</h2>
+                <h4>Haz una reservación haciendo click en el botón</h4>
             </div>
             <div class="col-lg-4">
                 <div class="border-button">
-                    <a href="reservation.html">Book Yours Now</a>
+                    <a href="reservation.html">Reserva ya</a>
                 </div>
             </div>
         </div>

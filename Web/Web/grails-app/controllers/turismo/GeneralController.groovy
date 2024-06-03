@@ -24,9 +24,15 @@ class GeneralController {
             // Llamada correcta al método del servicio
             generalService.registrar_usuario(nombre, usuario, clave)
             render(text: "true")
-        } catch (Exception e) {
+        } catch (e) {
             log.error("Error al registrar usuario", e)
             render(text: "false", status: 500)
         }
+
+    }
+
+    def logout(){
+        req().getSession().setAttribute("usuario", null);
+        redirect(controller: 'login')
     }
 }
