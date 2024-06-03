@@ -14,10 +14,9 @@ class TUsusarios {
     String clave
     Boolean administrador
     static constraints = {
-        nombre nullable: true;
-        usuario nullable: true;
-        clave nullable: true;
-        nombre nullable: true;
+        nombre nullable: true
+        usuario nullable: false
+        clave nullable: false
     }
 
     String toString(){

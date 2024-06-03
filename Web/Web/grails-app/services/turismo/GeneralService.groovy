@@ -23,19 +23,10 @@ class GeneralService {
         return tUsusarios;
     }
 
-    def regisrar_usuario(Long id, String nombre, String usuario, String clave) {
-        TUsusarios tUsusarios = TUsusarios.findById(id);
-        if (tUsusarios) {
-
-        } else {
-            tUsusarios = new TUsusarios(
-                    id: id,
-                    nombre: nombre,
-                    usuario: usuario,
-                    clave: clave
-            );
-        }
-        tUsusarios.save(failOnError: true);
+    def registrar_usuario(String nombre, String usuario, String clave) {
+        def tUsuario = new TUsusarios(nombre: nombre, usuario: usuario, clave: clave, administrador: false)
+        println "Creando nuevo usuario: $usuario"
+        tUsuario.save(failOnError: true)
     }
 }
 

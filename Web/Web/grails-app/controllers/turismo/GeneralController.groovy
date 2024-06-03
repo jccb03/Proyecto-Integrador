@@ -2,21 +2,31 @@ package turismo
 
 class GeneralController {
 
+    // Inyección del servicio
+    GeneralService generalService
 
     def index() {
-        render( view: "/general/home");
+        render(view: "/general/home");
     }
 
-//     puede ser def o void
-    def registrar_usuario(){
+    // Este método solo renderiza la vista para el registro
+    def mostrarRegistroUsuario() {
         render(view: "/general/registrar_usuario");
     }
-    def salvar_usuario(){
-        Long id = params.id
-        String nombre = params.nombre
-        String usuario = params.usuario
-        String clave = params.clave
-        registrar_usuario(id,nombre,usuario,clave)
-    }
 
+    // Este método procesa el registro del usuario
+    def salvar_usuario() {
+        def nombre = params.nombre
+        def usuario = params.usuario
+        def clave = params.clave
+        println "Intentando registrar usuario: $usuario"
+        try {
+            // Llamada correcta al método del servicio
+            generalService.registrar_usuario(nombre, usuario, clave)
+            render(text: "true")
+        } catch (Exception e) {
+            log.error("Error al registrar usuario", e)
+            render(text: "false", status: 500)
+        }
+    }
 }

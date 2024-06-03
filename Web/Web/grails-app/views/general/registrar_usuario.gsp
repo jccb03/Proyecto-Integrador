@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form id="reservation-form" name="gs" method="submit" role="search">
+                <form id="reservation-form" name="gs" action="javascript:void(0);" method="post" role="search">
                     <div class="row">
                         <div class="col-lg-12">
                             <h4>Registro Usuario</h4>

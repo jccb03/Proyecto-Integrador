@@ -3,7 +3,7 @@ package turismo
 class UrlMappings {
 
     static mappings = {
-        "/$controller/$action?/$id?(.$format)?" {
+        "/turismo-facil/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here
             }
@@ -13,7 +13,7 @@ class UrlMappings {
         get "/home"(controller: "general", action: "index")
         get "/login"(controller: "login", action: "index")
         post "/login/iniciar_sesion"(controller: "login", action: "iniciar_sesion")
-        get "/registrar_usuario"(controller: "general", action:"registrar_usuario")
+        get "/registrar_usuario"(controller: "general", action:"mostrarRegistroUsuario")
         post "/salvar_usuario"(controller:"general", action:"salvar_usuario")
         "500"(view: '/error')
         "404"(view: '/notFound')

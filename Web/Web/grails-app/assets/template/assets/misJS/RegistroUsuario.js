@@ -1,26 +1,22 @@
-let _id =0;w
+let _id =0;
 function salvar_usuario() {
     let params = {
-        id: _id,
+        // asegúrate de que los valores se están extrayendo correctamente
         usuario: $("#usuario").val(),
         nombre: $("#nombre").val(),
         clave: $("#clave").val(),
-    }
+    };
 
-    $.post(window.location + "/salvar_usuario", params).then((data) => {
-        if (data == "true") {
-            alert("Usuario salvado");
-           // nuevo();
-           // $("#modalUsuario");
+    $.post(window.location + "/salvar_usuario", params).then((response) => {
+        if (response === "true") {
+            alert("Usuario registrado exitosamente.");
         } else {
-            alert("No se pudo guardar");
+            alert("Error al registrar el usuario.");
         }
-
     }).fail((error) => {
-        console.log(error)
-    })
-
-
+        console.log("Error: ", error);
+        alert("Error al conectar con el servidor.");
+    });
 }
 
 // function redirectARegistro() {
