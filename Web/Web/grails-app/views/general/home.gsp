@@ -36,20 +36,20 @@
                                     <div class="row">
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-user"></i>
-                                            <h4><span>Population:</span><br>44.48 M</h4>
+                                            <h4><span>Capacidad:</span><br>30</h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-globe"></i>
-                                            <h4><span>Territory:</span><br>275.400 KM<em>2</em></h4>
+                                            <h4><span>Fecha:</span><br>10-24-2024<em></em></h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-home"></i>
-                                            <h4><span>AVG Price:</span><br>$946.000</h4>
+                                            <h4><span>Precio:</span><br>RD$3800.00</h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
-                                            <div class="main-button">
-                                                <a href="about.html">Explore More</a>
-                                            </div>
+%{--                                            <div class="main-button">--}%
+%{--                                                <a href="about.html"></a>--}%
+%{--                                            </div>--}%
                                         </div>
                                     </div>
                                 </div>
@@ -72,20 +72,20 @@
                                     <div class="row">
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-user"></i>
-                                            <h4><span>Population:</span><br>8.66 M</h4>
+                                            <h4><span>Capacidad:</span><br>50</h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-globe"></i>
-                                            <h4><span>Territory:</span><br>41.290 KM<em>2</em></h4>
+                                            <h4><span>Fecha:</span><br>15-07-2024<em></em></h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-home"></i>
-                                            <h4><span>AVG Price:</span><br>$1.100.200</h4>
+                                            <h4><span>Precio:</span><br>RD$2500</h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
-                                            <div class="main-button">
-                                                <a href="about.html">Explore More</a>
-                                            </div>
+%{--                                            <div class="main-button">--}%
+%{--                                                <a href="about.html">Explore More</a>--}%
+%{--                                            </div>--}%
                                         </div>
                                     </div>
                                 </div>
@@ -108,20 +108,20 @@
                                     <div class="row">
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-user"></i>
-                                            <h4><span>Population:</span><br>67.41 M</h4>
+                                            <h4><span>Capacidad:</span><br>80</h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-globe"></i>
-                                            <h4><span>Territory:</span><br>551.500 KM<em>2</em></h4>
+                                            <h4><span>Fecha:</span><br>11-06-2024<em></em></h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-home"></i>
-                                            <h4><span>AVG Price:</span><br>$425.600</h4>
+                                            <h4><span>Precio:</span><br>RD$3000</h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
-                                            <div class="main-button">
-                                                <a href="about.html">Explore More</a>
-                                            </div>
+%{--                                            <div class="main-button">--}%
+%{--                                                <a href="about.html">Explore More</a>--}%
+%{--                                            </div>--}%
                                         </div>
                                     </div>
                                 </div>
@@ -133,9 +133,9 @@
             <div id="top-banner-4" class="banner">
                 <div class="banner-inner-wrapper header-text">
                     <div class="main-caption">
-                        <h2>Take a Glimpse Into The Beautiful Country Of:</h2>
-                        <h1>Thailand</h1>
-                        <div class="border-button"><a href="about.html">Go There</a></div>
+                        <h2>Toma una vista al hermoso pueblo de Samana</h2>
+                        <h1>Ir</h1>
+                        <div class="border-button"><a href="about.html">Ir</a></div>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -144,20 +144,20 @@
                                     <div class="row">
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-user"></i>
-                                            <h4><span>Population:</span><br>69.86 M</h4>
+                                            <h4><span>Capacidad:</span><br>60</h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-globe"></i>
-                                            <h4><span>Territory:</span><br>513.120 KM<em>2</em></h4>
+                                            <h4><span>Fecha:</span><br>25-08-2024<em></em></h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
                                             <i class="fa fa-home"></i>
-                                            <h4><span>AVG Price:</span><br>$165.450</h4>
+                                            <h4><span>Precio:</span><br>RD$4000</h4>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-6">
-                                            <div class="main-button">
-                                                <a href="about.html">Explore More</a>
-                                            </div>
+%{--                                            <div class="main-button">--}%
+%{--                                                <a href="about.html">Explore More</a>--}%
+%{--                                            </div>--}%
                                         </div>
                                     </div>
                                 </div>
@@ -184,8 +184,8 @@
         <div class="row">
             <div class="col-lg-5">
                 <div class="section-heading">
-                    <h2>Visit One Of Our Countries Now</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                    <h2>Visita uno de nuestros paisajes naturales</h2>
+                    <p>Anímate a viajar con nosotros a hacer tour interno</p>
                 </div>
             </div>
         </div>
@@ -203,20 +203,20 @@
                                     </div>
                                     <div class="col-lg-8 col-sm-7">
                                         <div class="right-content">
-                                            <h4>SWITZERLAND</h4>
-                                            <span>Europe</span>
-                                            <div class="main-button">
-                                                <a href="about.html">Explore More</a>
-                                            </div>
-                                            <p>Woox Travel is a professional Bootstrap 5 theme HTML CSS layout for your website. You can use this layout for your commercial work.</p>
+                                            <h4>CARIBE</h4>
+                                            <span>Republica Dominicana</span>
+%{--                                            <div class="main-button">--}%
+%{--                                                <a href="about.html">Explore More</a>--}%
+%{--                                            </div>--}%
+                                            <p> La República Dominicana es un país vibrante y diverso ubicado en el Caribe, en la zona central de las Antillas1. Ocupa la parte central y oriental de la isla La Española y su capital y ciudad más poblada es Santo Domingo</p>
                                             <ul class="info">
-                                                <li><i class="fa fa-user"></i> 8.66 Mil People</li>
-                                                <li><i class="fa fa-globe"></i> 41.290 km2</li>
-                                                <li><i class="fa fa-home"></i> $1.100.200</li>
+                                                <li><i class="fa fa-user"></i> 30 cupos</li>
+                                                <li><i class="fa fa-globe"></i> 10-24-2024</li>
+                                                <li><i class="fa fa-home"></i> RD$3800</li>
                                             </ul>
-                                            <div class="text-button">
-                                                <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>
-                                            </div>
+%{--                                            <div class="text-button">--}%
+%{--                                                <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>--}%
+%{--                                            </div>--}%
                                         </div>
                                     </div>
                                 </div>
@@ -232,20 +232,20 @@
                                     </div>
                                     <div class="col-lg-8 col-sm-7">
                                         <div class="right-content">
-                                            <h4>CARIBBEAN</h4>
-                                            <span>North America</span>
-                                            <div class="main-button">
-                                                <a href="about.html">Explore More</a>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                                            <h4>Puerto Plata</h4>
+                                            <span>Republica Dominicana</span>
+%{--                                            <div class="main-button">--}%
+%{--                                                <a href="about.html">Explore More</a>--}%
+%{--                                            </div>--}%
+                                            <p> Puerto Plata, oficialmente conocida como San Felipe de Puerto Plata, es una importante ciudad costera en la República Dominicana y la capital de la provincia de Puerto Plata12. Es una de las ciudades más pobladas de la República Dominicana y la ciudad más importante de la costa norte del país</p>
                                             <ul class="info">
-                                                <li><i class="fa fa-user"></i> 44.48 Mil People</li>
-                                                <li><i class="fa fa-globe"></i> 275.400 km2</li>
-                                                <li><i class="fa fa-home"></i> $946.000</li>
+                                                <li><i class="fa fa-user"></i> 50 cupos</li>
+                                                <li><i class="fa fa-globe"></i> 15-07-2024</li>
+                                                <li><i class="fa fa-home"></i> RD$2500</li>
                                             </ul>
-                                            <div class="text-button">
-                                                <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>
-                                            </div>
+%{--                                            <div class="text-button">--}%
+%{--                                                <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>--}%
+%{--                                            </div>--}%
                                         </div>
                                     </div>
                                 </div>
@@ -261,20 +261,20 @@
                                     </div>
                                     <div class="col-lg-8 col-sm-7">
                                         <div class="right-content">
-                                            <h4>FRANCE</h4>
-                                            <span>Europe</span>
-                                            <div class="main-button">
-                                                <a href="about.html">Explore More</a>
-                                            </div>
-                                            <p>We hope this WoOx template is useful for you, please support us a <a href="https://paypal.me/templatemo" target="_blank">small amount of PayPal</a> to info [at] templatemo.com for our survival. We really appreciate your contribution.</p>
+                                            <h4>Río San Juan</h4>
+                                            <span>Republica Dominicana</span>
+%{--                                            <div class="main-button">--}%
+%{--                                                <a href="about.html">Explore More</a>--}%
+%{--                                            </div>--}%
+                                            <p>Río San Juan es una pequeña ciudad costera en la provincia de María Trinidad Sánchez en la República Dominicana. Es conocida por su belleza natural, sus playas tranquilas y su laguna Gri-Gri, un destino popular para los tours en bote </a> </p>
                                             <ul class="info">
-                                                <li><i class="fa fa-user"></i> 67.41 Mil People</li>
-                                                <li><i class="fa fa-globe"></i> 551.500 km2</li>
-                                                <li><i class="fa fa-home"></i> $425.600</li>
+                                                <li><i class="fa fa-user"></i> 80 cupos</li>
+                                                <li><i class="fa fa-globe"></i> 11-06-2024</li>
+                                                <li><i class="fa fa-home"></i> RD$3000</li>
                                             </ul>
-                                            <div class="text-button">
-                                                <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>
-                                            </div>
+%{--                                            <div class="text-button">--}%
+%{--                                                <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>--}%
+%{--                                            </div>--}%
                                         </div>
                                     </div>
                                 </div>
