@@ -32,7 +32,7 @@ class GeneralController {
     }
 
     def logout(){
-        req().getSession().setAttribute("usuario", null);
-        redirect(controller: 'login')
+        session.usuario = null
+        redirect(url: '/login')
     }
 }
