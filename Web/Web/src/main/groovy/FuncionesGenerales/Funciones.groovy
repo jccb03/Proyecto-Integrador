@@ -20,7 +20,7 @@ class Funciones {
     }
 
 
-    static BigDecimal normalFormat(Object obj) {
+     BigDecimal normalFormat(Object obj) {
 
         try {
             if (!obj.toString().equals("")) {
@@ -47,7 +47,7 @@ class Funciones {
         }
     }
 
-    static String currencyFormat(Object obj) {
+     String currencyFormat(Object obj) {
         NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale('en'));
         try {
             if (obj.toString().substring(0, 1).equals("-")) {

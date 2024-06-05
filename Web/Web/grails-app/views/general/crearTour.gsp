@@ -54,9 +54,16 @@
               </fieldset>
             </div>
 
+            <div class="col-lg-6">
+              <fieldset>
+                <label for="cupos" class="form-label">capacidad</label>
+                <input type="text" name="cupos" class="cupos" id="cupos" placeholder="cupos" autocomplete="on" required>
+              </fieldset>
+            </div>
+
             <div class="col-lg-12">
               <fieldset>
-                <button class="main-button" type="button" onclick="salvar_usuario()">Confirmar</button>
+                <button class="main-button" type="button" onclick="salvar_tour()">Confirmar</button>
               </fieldset>
             </div>
 
@@ -68,6 +75,6 @@
   </div>
 </div>
 %{--<asset:javascript src="assets/misJS/login.js"/>--}%
-%{--<asset:javascript src="assets/misJS/RegistroUsuario.js"/>--}%
+<asset:javascript src="assets/misJS/crearTour.js.js"/>
 </body>
 </html>

@@ -36,5 +36,25 @@ class GeneralService {
         }
         tUsuarios.save(failOnError: true)
     }
+
+
+    def registrar_tour(int id, String nombre, String descripcion, BigDecimal precio, Date fecha, int capacidad, int cupos ){
+        TTour tTour = TTour.findById(id);
+        if (tTour){
+            tTour.setfNombre(nombre)
+            tTour.setfDescripcion(descripcion)
+            tTour.setfPrecio(precio)
+            tTour.setfFecha(fecha)
+            tTour.setfCapacidad(capacidad)
+            tTour.setfCupos(cupos)
+
+        }else {
+            tTour = new TTour(fNombre: nombre, fDescripcion: descripcion, fPrecio: precio, fFecha: fecha, fCapacidad: capacidad, fCupos: cupos)
+        }
+        tTour.save(failOnError: true)
+
+    }
+
+
 }
 
