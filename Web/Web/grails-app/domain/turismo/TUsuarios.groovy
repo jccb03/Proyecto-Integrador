@@ -2,7 +2,7 @@ package turismo
 
 import grails.converters.JSON
 
-class TUsusarios {
+class TUsuarios {
     static mapping = {
         version(false)
         table("t_usuarios")

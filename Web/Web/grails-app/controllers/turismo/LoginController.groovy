@@ -1,8 +1,6 @@
 package turismo
 
 import FuncionesGenerales.Funciones
-import groovy.sql.Sql
-
 
 class LoginController {
     def generalService;
@@ -20,7 +18,7 @@ class LoginController {
         // Consulta la base de datos para verificar las credenciales
 
 //        Map mapa = generalService.iniciar_sesion(username,password);
-        TUsusarios usuario = generalService.iniciar_sesion(username,password);
+        TUsuarios usuario = generalService.iniciar_sesion(username,password);
         if (usuario){
             session.setAttribute("usuario",usuario);
             println(session.usuario);

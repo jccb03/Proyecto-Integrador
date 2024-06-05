@@ -3,7 +3,7 @@ package turismo
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class TUsusariosSpec extends Specification implements DomainUnitTest<TUsusarios> {
+class TUsuariosSpec extends Specification implements DomainUnitTest<TUsuarios> {
 
     def setup() {
     }

@@ -40,7 +40,7 @@ endpoints:
   jmx:
     enabled: true
 server:
-  port: 8080
+  port: 8081
   session:
     timeout: 86400
   tomcat:

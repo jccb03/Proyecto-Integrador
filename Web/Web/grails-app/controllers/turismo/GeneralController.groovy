@@ -9,6 +9,10 @@ class GeneralController {
         render(view: "/general/home");
     }
 
+    def crearTour() {
+        render(view: "/general/crearTour");
+    }
+
     // Este método solo renderiza la vista para el registro
     def mostrarRegistroUsuario() {
         render(view: "/general/registrar_usuario");
@@ -19,10 +23,10 @@ class GeneralController {
         def nombre = params.nombre
         def usuario = params.usuario
         def clave = params.clave
-        println "Intentando registrar usuario: $usuario"
+        //println "Intentando registrar usuario: $usuario"
         try {
             // Llamada correcta al método del servicio
-            generalService.registrar_usuario(nombre, usuario, clave)
+            generalService.registrar_usuario(0,nombre, usuario, clave)
             render(text: "true")
         } catch (e) {
             log.error("Error al registrar usuario", e)

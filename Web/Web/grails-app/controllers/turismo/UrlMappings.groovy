@@ -17,6 +17,7 @@ class UrlMappings {
         post "/registrar_usuario/salvar_usuario"(controller:"general", action:"salvar_usuario")
         get "/logout"(controller: "general", action:"logout")
         get "/crearTour"(controller: "general", action:"crearTour")
+        post "/crearTour/salvar_tour"(controller: "general", action:"salvar_tour")
         "500"(view: '/error')
         "404"(view: '/notFound')
     }
