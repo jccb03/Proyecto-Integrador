@@ -56,7 +56,7 @@
 
             <div class="col-lg-6">
               <fieldset>
-                <label for="cupos" class="form-label">capacidad</label>
+                <label for="cupos" class="form-label">Cupos</label>
                 <input type="text" name="cupos" class="cupos" id="cupos" placeholder="cupos" autocomplete="on" required>
               </fieldset>
             </div>
