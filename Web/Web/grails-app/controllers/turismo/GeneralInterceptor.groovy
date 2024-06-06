@@ -7,16 +7,24 @@ class GeneralInterceptor {
         matchAll().
                 excludes(controller: "login")
     }
+
     boolean before() {
-        if (session.usuario ) {
+        if (session.usuario) {
+            def usuario = session.usuario
+            def requestPath = request.getServletPath()
+
+            if (requestPath.contains("crearTour") || requestPath.contains("registrar_admin")) {
+                if (!usuario.administrador) {
+                    redirect(controller: "general", action: "index")
+                    return false
+                }
+            }
             return true
         } else {
-            println(request.getServletPath());
             if(request.getServletPath().contains("registrar_usuario")){
                 return true
             }
-
-            redirect controller: "login", actionName: "index"
+            redirect(controller: "login", action: "index")
             return false
         }
     }
@@ -27,3 +35,4 @@ class GeneralInterceptor {
         // no-op
     }
 }
+

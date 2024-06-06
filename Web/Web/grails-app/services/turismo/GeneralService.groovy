@@ -23,7 +23,7 @@ class GeneralService {
         return tUsusarios;
     }
 
-    def registrar_usuario(int id,String nombre, String usuario, String clave) {
+    def registrar_usuario(int id,String nombre, String usuario, String clave, boolean admin) {
         TUsuarios tUsuarios = TUsuarios.findById(id);
         if (tUsuarios){
             tUsuarios.setNombre(nombre)
@@ -32,7 +32,7 @@ class GeneralService {
                 tUsuarios.setClave(clave)
             }
         }else {
-            tUsuarios = new TUsuarios(nombre: nombre, usuario: usuario, clave: clave, administrador: false)
+            tUsuarios = new TUsuarios(nombre: nombre, usuario: usuario, clave: clave, administrador: admin)
         }
         tUsuarios.save(failOnError: true)
     }

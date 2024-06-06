@@ -21,6 +21,10 @@ class GeneralController {
         render(view: "/general/registrar_usuario");
     }
 
+    def registroAdmin() {
+        render(view: "/general/registrar_admin");
+    }
+
     // Este método procesa el registro del usuario
     def salvar_usuario() {
         def nombre = params.nombre
@@ -29,7 +33,24 @@ class GeneralController {
         //println "Intentando registrar usuario: $usuario"
         try {
             // Llamada correcta al método del servicio
-            generalService.registrar_usuario(0,nombre, usuario, clave)
+            generalService.registrar_usuario(0,nombre, usuario, clave, false)
+            render(text: "true")
+        } catch (e) {
+            log.error("Error al registrar usuario", e)
+            render(text: "false", status: 500)
+        }
+
+    }
+
+    def salvar_admin() {
+        def nombre = params.nombre
+        def usuario = params.usuario
+        def clave = params.clave
+        boolean admin = params.admin
+        //println "Intentando registrar usuario: $usuario"
+        try {
+            // Llamada correcta al método del servicio
+            generalService.registrar_usuario(0,nombre, usuario, clave, admin)
             render(text: "true")
         } catch (e) {
             log.error("Error al registrar usuario", e)
