@@ -9,9 +9,14 @@ class GeneralInterceptor {
     }
 
     boolean before() {
+        def requestPath = request.getServletPath()
+
+        if (requestPath.contains("home")
+        ){
+            return true;
+        }
         if (session.usuario) {
             def usuario = session.usuario
-            def requestPath = request.getServletPath()
 
             if (requestPath.contains("crearTour") || requestPath.contains("registrar_admin")) {
                 if (!usuario.administrador) {
@@ -24,7 +29,7 @@ class GeneralInterceptor {
             if(request.getServletPath().contains("registrar_usuario")){
                 return true
             }
-            redirect(controller: "login", action: "index")
+            redirect(controller: "general", action: "index")
             return false
         }
     }

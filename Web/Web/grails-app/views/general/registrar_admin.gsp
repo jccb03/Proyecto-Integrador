@@ -41,8 +41,8 @@
                         </div>
                         <div class="col-lg-6">
                             <fieldset>
+                                <input type="checkbox" style="height: 20px;width: 20px" name="admin" class="admin" id="admin">
                                 <label for="admin" class="form-label">Administrador</label>
-                                <input type="checkbox" name="admin" class="admin" id="admin">
                             </fieldset>
                         </div>
                         <div class="col-lg-12">

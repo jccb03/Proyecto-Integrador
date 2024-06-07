@@ -1,12 +1,13 @@
+<%@ page import="turismo.TUsuarios" %>
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-%{--    <title>--}%
-%{--       TURISMO--}%
-%{--    </title>--}%
-    <g:layoutTitle default="TURISMO" />
+    %{--    <title>--}%
+    %{--       TURISMO--}%
+    %{--    </title>--}%
+    <g:layoutTitle default="TURISMO"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
@@ -14,7 +15,8 @@
 
 
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
     <title>WoOx Travel Bootstrap 5 Theme</title>
 
@@ -27,21 +29,18 @@
     <asset:stylesheet src="assets/css/templatemo-woox-travel.css"/>
     <asset:stylesheet src="assets/css/owl.css"/>
     <asset:stylesheet src="assets/css/animate.css"/>
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <!-- VENDOR CSS -->
     <g:layoutHead/>
 </head>
 
-<body >
-
-
-
-
+<body>
 
 <!-- ***** Preloader Start ***** -->
 <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
         <span class="dot"></span>
+
         <div class="dots">
             <span></span>
             <span></span>
@@ -59,18 +58,28 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-%{--                        <img src="assets/images/logo.png" alt="">--}%
-                        <asset:image src="assets/images/logo.png" alt="" />
+                        %{--                        <img src="assets/images/logo.png" alt="">--}%
+                        <asset:image src="assets/images/logo.png" alt=""/>
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="./home" class="active">Home</a></li>
-                        <li><a href="./crearTour">Crear Tour</a></li>
-                        <li><a href="./registrar_admin">Administrador</a></li>
-%{--                        <li><a href="reservation.html">Reservaciones</a></li>--}%
-%{--                        <li><a href="reservation.html">Reserva ya</a></li>--}%
-                        <li><a href="./logout">Logout</a></li>
+                        <g:if test="${session.usuario}">
+                            <g:if test="${((turismo.TUsuarios) session.usuario).administrador == true}">
+                                <li><a href="./crearTour">Crear Tour</a></li>
+                                <li><a href="./registrar_admin">Administrador</a></li>
+                            </g:if>
+                        </g:if>
+
+                    %{--                        <li><a href="reservation.html">Reservaciones</a></li>--}%
+                    %{--                        <li><a href="reservation.html">Reserva ya</a></li>--}%
+                        <g:if test="${session.usuario}">
+                            <li><a href="./logout">Logout</a></li>
+                        </g:if>
+                        <g:else>
+                            <li><a href="./login">Login</a></li>
+                        </g:else>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -109,7 +118,7 @@
 
     var bannerTimer = setInterval(bannerSwitcher, 5000);
 
-    $('nav .controls label').click(function() {
+    $('nav .controls label').click(function () {
         clearInterval(bannerTimer);
         bannerTimer = setInterval(bannerSwitcher, 5000)
     });
