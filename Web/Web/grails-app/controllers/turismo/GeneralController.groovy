@@ -25,7 +25,10 @@ class GeneralController {
     }
 
     def editarTour(int id) {
-        TTour tTour = TTour.findById(id);
+        TTour tTour = null;
+        if (params.containsKey("id")){
+            tTour = TTour.findById(id);
+        }
         render(view: "/general/editarTour", model: [tour: tTour]);
     }
 
