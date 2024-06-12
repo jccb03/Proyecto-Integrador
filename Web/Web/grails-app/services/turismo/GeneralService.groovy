@@ -18,6 +18,7 @@ class GeneralService {
 //      collection.add(clave)
 //      return sqlService.getQueryMap(sql,collection)
 //  }
+
     TUsuarios iniciar_sesion(String usuario, String clave) {
         TUsuarios tUsusarios = TUsuarios.findByUsuarioAndClave(usuario, clave);
         return tUsusarios;
@@ -52,9 +53,11 @@ class GeneralService {
             tTour = new TTour(fNombre: nombre, fDescripcion: descripcion, fPrecio: precio, fFecha: fecha, fCapacidad: capacidad, fCupos: cupos)
         }
         tTour.save(failOnError: true)
-
     }
 
-
+    def obtener_tours(){
+        
+        return TTour.list()
+    }
 }
 

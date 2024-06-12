@@ -30,6 +30,16 @@
     <asset:stylesheet src="assets/css/owl.css"/>
     <asset:stylesheet src="assets/css/animate.css"/>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <style>
+        .dropdown-menu.show {
+            display: block;
+            background: #22b3c1;
+            border: transparent;
+        }
+        .header-area .main-nav .nav li a:hover {
+            color: black;
+        }
+    </style>
     <!-- VENDOR CSS -->
     <g:layoutHead/>
 </head>
@@ -67,7 +77,15 @@
                         <li><a href="./home" class="active">Home</a></li>
                         <g:if test="${session.usuario}">
                             <g:if test="${((turismo.TUsuarios) session.usuario).administrador == true}">
-                                <li><a href="./crearTour">Crear Tour</a></li>
+                                <li class="nav-item dropdown">
+                                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Tours
+                                          </a>
+                                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="./crearTour">Crear Tour</a></li>
+                                <li><a class="dropdown-item" href="./editarTour">Editar Tour</a></li>
+                                </ul>
+                                 </li>
                                 <li><a href="./registrar_admin">Administrador</a></li>
                             </g:if>
                         </g:if>
@@ -101,6 +119,7 @@
 <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
 <asset:javascript src="vendor/jquery/jquery.min.js"/>
+<asset:javascript src="assets/js/popper.js"/>
 <asset:javascript src="vendor/bootstrap/js/bootstrap.min.js"/>
 <asset:javascript src="assets/js/isotope.min.js"/>
 <asset:javascript src="assets/js/owl-carousel.js"/>
@@ -108,6 +127,7 @@
 <asset:javascript src="assets/js/tabs.js"/>
 <asset:javascript src="assets/js/popup.js"/>
 <asset:javascript src="assets/js/custom.js"/>
+
 
 <script>
     function bannerSwitcher() {

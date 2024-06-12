@@ -18,7 +18,7 @@ class GeneralInterceptor {
         if (session.usuario) {
             def usuario = session.usuario
 
-            if (requestPath.contains("crearTour") || requestPath.contains("registrar_admin")) {
+            if (requestPath.contains("crearTour") || requestPath.contains("registrar_admin") || requestPath.contains("editarTour")) {
                 if (!usuario.administrador) {
                     redirect(controller: "general", action: "index")
                     return false

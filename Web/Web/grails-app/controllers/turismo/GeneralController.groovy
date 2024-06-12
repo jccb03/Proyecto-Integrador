@@ -1,6 +1,7 @@
 package turismo
 
 import FuncionesGenerales.Funciones
+import grails.converters.JSON
 
 class GeneralController {
     Funciones funciones = new Funciones()
@@ -9,11 +10,23 @@ class GeneralController {
     GeneralService generalService
 
     def index() {
-        render(view: "/general/home");
+        def tours = generalService.obtener_tours()
+        render(view: "/general/home", model: [tours:tours])
+    }
+
+    def obtenerTours(){
+        def tours = generalService.obtener_tours()
+        println "Tours: " + tours
+        respond tours as JSON
     }
 
     def crearTour() {
         render(view: "/general/crearTour");
+    }
+
+    def editarTour(int id) {
+        TTour tTour = TTour.findById(id);
+        render(view: "/general/editarTour", model: [tour: tTour]);
     }
 
     // Este método solo renderiza la vista para el registro
@@ -59,6 +72,23 @@ class GeneralController {
 
     }
 
+    def modificar_tour(){
+        def id = params.id as int
+        def nombre = params.nombre as String
+        def descripcion = params.descripcion
+        def precio = params.precio as BigDecimal
+        def fecha = new Date(funciones.normalFormat(params.fecha).toLong())
+        def capacidad = params.capacidad as int
+        def cupos = params.cupos as int
+        try{
+            generalService.registrar_tour(id, nombre, descripcion, precio, fecha, capacidad, cupos);
+            render(text: "true");
+        } catch(e) {
+            log.error("Error al modificar el tour", e)
+            render(text: "false", status: 500)
+        }
+    }
+
     def salvar_tour() {
         def nombre = params.nombre
         def descripcion = params.descripcion
@@ -77,6 +107,8 @@ class GeneralController {
         }
 
     }
+
+
 
     def logout(){
         session.usuario = null

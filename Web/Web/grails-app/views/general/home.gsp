@@ -10,6 +10,13 @@
 <head>
     <meta name="layout" content="main"/>
     <title>Home</title>
+    <style>
+        .tour { display: none; }
+        .tour.visible { display: block; }
+        .page-numbers { display: flex; list-style-type: none; padding: 0; }
+        .page-numbers li { margin: 0 5px; }
+        .page-numbers li.active a { font-weight: bold; }
+    </style>
 </head>
 
 <body>
@@ -21,151 +28,49 @@
         <input type="radio" id="banner2" class="sec-1-input" name="banner">
         <input type="radio" id="banner3" class="sec-1-input" name="banner">
         <input type="radio" id="banner4" class="sec-1-input" name="banner">
+        <%
+            def toursOrdenado = tours.sort { it.id }
+            def primerosTours = toursOrdenado.take(5)
+        %>
         <div class="slider">
-            <div id="top-banner-1" class="banner">
-                <div class="banner-inner-wrapper header-text">
-                    <div class="main-caption">
-                        <h2>Toma una vista al hermoso Caribe:</h2>
-                        <h1>Caribe</h1>
-                        <div class="border-button"><a href="about.html">Ir</a></div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="more-info">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-user"></i>
-                                            <h4><span>Capacidad:</span><br>30</h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-globe"></i>
-                                            <h4><span>Fecha:</span><br>10-24-2024<em></em></h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-home"></i>
-                                            <h4><span>Precio:</span><br>RD$3800.00</h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-%{--                                            <div class="main-button">--}%
-%{--                                                <a href="about.html"></a>--}%
-%{--                                            </div>--}%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="top-banner-2" class="banner">
-                <div class="banner-inner-wrapper header-text">
-                    <div class="main-caption">
-                        <h2>Visita este maravilloso pueblo</h2>
-                        <h1>Puerto Plata</h1>
-                        <div class="border-button"><a href="about.html">Ir</a></div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="more-info">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-user"></i>
-                                            <h4><span>Capacidad:</span><br>50</h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-globe"></i>
-                                            <h4><span>Fecha:</span><br>15-07-2024<em></em></h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-home"></i>
-                                            <h4><span>Precio:</span><br>RD$2500</h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-%{--                                            <div class="main-button">--}%
-%{--                                                <a href="about.html">Explore More</a>--}%
-%{--                                            </div>--}%
+            <g:each in="${primerosTours}" var="tour" status="i">
+                        <div id="top-banner-${tour.id}" class="banner">
+                                        <div class="banner-inner-wrapper header-text">
+                                            <div class="main-caption">
+                                                <h2>${tour.fDescripcion.substring(0, 50)}...</h2>
+                                                <h1>${tour.fNombre}</h1>
+                                                <div class="border-button"><a href="about.html">Ir</a></div>
+                                            </div>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="more-info">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-sm-6 col-6">
+                                                                    <i class="fa fa-user"></i>
+                                                                    <h4><span>Capacidad:</span><br>${tour.fCapacidad}</h4>
+                                                                </div>
+                                                                <div class="col-lg-3 col-sm-6 col-6">
+                                                                    <i class="fa fa-globe"></i>
+                                                                    <h4><span>Fecha:</span><br><g:formatDate format="dd-MM-yyyy" date="${tour.fFecha}" /><em></em></h4>
+                                                                </div>
+                                                                <div class="col-lg-3 col-sm-6 col-6">
+                                                                    <i class="fa fa-home"></i>
+                                                                    <h4><span>Precio:</span><br>RD${tour.fPrecio}</h4>
+                                                                </div>
+                                                                  <div class="col-lg-3 col-sm-6 col-6">
+                        %{--                                            <div class="main-button">--}%
+                        %{--                                                <a href="about.html"></a>--}%
+                        %{--                                            </div>--}%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="top-banner-3" class="banner">
-                <div class="banner-inner-wrapper header-text">
-                    <div class="main-caption">
-                        <h2>Visita los charcos de:</h2>
-                        <h1>Río San Juan</h1>
-                        <div class="border-button"><a href="about.html">Ir</a></div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="more-info">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-user"></i>
-                                            <h4><span>Capacidad:</span><br>80</h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-globe"></i>
-                                            <h4><span>Fecha:</span><br>11-06-2024<em></em></h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-home"></i>
-                                            <h4><span>Precio:</span><br>RD$3000</h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-%{--                                            <div class="main-button">--}%
-%{--                                                <a href="about.html">Explore More</a>--}%
-%{--                                            </div>--}%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="top-banner-4" class="banner">
-                <div class="banner-inner-wrapper header-text">
-                    <div class="main-caption">
-                        <h2>Toma una vista al hermoso pueblo de Samana</h2>
-                        <h1>Ir</h1>
-                        <div class="border-button"><a href="about.html">Ir</a></div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="more-info">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-user"></i>
-                                            <h4><span>Capacidad:</span><br>60</h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-globe"></i>
-                                            <h4><span>Fecha:</span><br>25-08-2024<em></em></h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-                                            <i class="fa fa-home"></i>
-                                            <h4><span>Precio:</span><br>RD$4000</h4>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-6">
-%{--                                            <div class="main-button">--}%
-%{--                                                <a href="about.html">Explore More</a>--}%
-%{--                                            </div>--}%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                </g:each>
         </div>
         <nav>
             <div class="controls">
@@ -179,114 +84,65 @@
 </section>
 <!-- ***** Main Banner Area End ***** -->
 
-<div class="visit-country">
+<div class="visit-country" id="lista">
     <div class="container">
         <div class="row">
             <div class="col-lg-5">
                 <div class="section-heading">
-                    <h2>Visita uno de nuestros paisajes naturales</h2>
+                    <h2 class="text-white">Visita uno de nuestros paisajes naturales</h2>
                     <p>Anímate a viajar con nosotros a hacer tour interno</p>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" >
             <div class="col-lg-8">
                 <div class="items">
                     <div class="row">
+
+                    <g:each in="${toursOrdenado}" var="tour" status="i">
+                                                    <div class="col-lg-12 tour">
+                                                        <div class="item">
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-sm-5">
+                                                                    <div class="image">
+                                                                        <img src="assets/images/country-01.jpg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-8 col-sm-7">
+                                                                    <div class="right-content">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6">
+                                                                                <h4 class="text-white">${tour.fNombre}</h4>
+                                                                                <span>Republica Dominicana</span>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <g:if test="${session.usuario}">
+                                                                                        <g:if test="${((turismo.TUsuarios) session.usuario).administrador == true}">
+                                                                                            <div class="border-button"><a href="./editarTour?id=${tour.id}">Editar Tour</a></div>
+                                                                                        </g:if>
+                                                                                </g:if>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <p>${tour.fDescripcion}</p>
+                                                                        <ul class="info">
+                                                                            <li><i class="fa fa-user"></i> ${tour.fCupos} cupos</li>
+                                                                            <li><i class="fa fa-globe"></i> <g:formatDate format="dd/MM/yyyy" date="${tour.fFecha}" /></li>
+                                                                            <li><i class="fa fa-home"></i> RD$${tour.fPrecio}</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </g:each>
                         <div class="col-lg-12">
-                            <div class="item">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-5">
-                                        <div class="image">
-                                            <img src="assets/images/country-01.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-sm-7">
-                                        <div class="right-content">
-                                            <h4>CARIBE</h4>
-                                            <span>Republica Dominicana</span>
-%{--                                            <div class="main-button">--}%
-%{--                                                <a href="about.html">Explore More</a>--}%
-%{--                                            </div>--}%
-                                            <p> La República Dominicana es un país vibrante y diverso ubicado en el Caribe, en la zona central de las Antillas1. Ocupa la parte central y oriental de la isla La Española y su capital y ciudad más poblada es Santo Domingo</p>
-                                            <ul class="info">
-                                                <li><i class="fa fa-user"></i> 30 cupos</li>
-                                                <li><i class="fa fa-globe"></i> 10-24-2024</li>
-                                                <li><i class="fa fa-home"></i> RD$3800</li>
-                                            </ul>
-%{--                                            <div class="text-button">--}%
-%{--                                                <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>--}%
-%{--                                            </div>--}%
-                                        </div>
-                                    </div>
+                            <ul id="pagination" class="page-numbers">
+                                <li id="prevButton"><a href=""><i class="fa fa-arrow-left"></i></a></li>
+                                <div id="number-pages">
+
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="item">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-5">
-                                        <div class="image">
-                                            <img src="assets/images/country-02.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-sm-7">
-                                        <div class="right-content">
-                                            <h4>Puerto Plata</h4>
-                                            <span>Republica Dominicana</span>
-%{--                                            <div class="main-button">--}%
-%{--                                                <a href="about.html">Explore More</a>--}%
-%{--                                            </div>--}%
-                                            <p> Puerto Plata, oficialmente conocida como San Felipe de Puerto Plata, es una importante ciudad costera en la República Dominicana y la capital de la provincia de Puerto Plata12. Es una de las ciudades más pobladas de la República Dominicana y la ciudad más importante de la costa norte del país</p>
-                                            <ul class="info">
-                                                <li><i class="fa fa-user"></i> 50 cupos</li>
-                                                <li><i class="fa fa-globe"></i> 15-07-2024</li>
-                                                <li><i class="fa fa-home"></i> RD$2500</li>
-                                            </ul>
-%{--                                            <div class="text-button">--}%
-%{--                                                <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>--}%
-%{--                                            </div>--}%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="item last-item">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-5">
-                                        <div class="image">
-                                            <img src="assets/images/country-03.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-sm-7">
-                                        <div class="right-content">
-                                            <h4>Río San Juan</h4>
-                                            <span>Republica Dominicana</span>
-%{--                                            <div class="main-button">--}%
-%{--                                                <a href="about.html">Explore More</a>--}%
-%{--                                            </div>--}%
-                                            <p>Río San Juan es una pequeña ciudad costera en la provincia de María Trinidad Sánchez en la República Dominicana. Es conocida por su belleza natural, sus playas tranquilas y su laguna Gri-Gri, un destino popular para los tours en bote </a> </p>
-                                            <ul class="info">
-                                                <li><i class="fa fa-user"></i> 80 cupos</li>
-                                                <li><i class="fa fa-globe"></i> 11-06-2024</li>
-                                                <li><i class="fa fa-home"></i> RD$3000</li>
-                                            </ul>
-%{--                                            <div class="text-button">--}%
-%{--                                                <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>--}%
-%{--                                            </div>--}%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <ul class="page-numbers">
-                                <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
+                                <li id="nextButton"><a href=""><i class="fa fa-arrow-right"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -322,5 +178,7 @@
         </div>
     </div>
 </div>
+<asset:javascript src="assets/misJS/organizarTours.js"/>
+
 </body>
 </html>
