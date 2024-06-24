@@ -1,7 +1,4 @@
 package turismo
-
-import grails.converters.JSON
-
 class TTour {
 
     static mapping = {

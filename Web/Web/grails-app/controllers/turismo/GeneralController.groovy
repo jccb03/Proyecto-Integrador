@@ -3,6 +3,8 @@ package turismo
 import FuncionesGenerales.Funciones
 import grails.converters.JSON
 
+import java.text.SimpleDateFormat
+
 class GeneralController {
     Funciones funciones = new Funciones()
 
@@ -46,10 +48,14 @@ class GeneralController {
         def nombre = params.nombre
         def usuario = params.usuario
         def clave = params.clave
+        def apellido = params.apellido
+        def correo = params.correo
+        def telefono = params.telefono
+
         //println "Intentando registrar usuario: $usuario"
         try {
             // Llamada correcta al método del servicio
-            generalService.registrar_usuario(0,nombre, usuario, clave, false)
+            generalService.registrar_usuario(0,nombre, usuario, clave, false, apellido, correo, telefono)
             render(text: "true")
         } catch (e) {
             log.error("Error al registrar usuario", e)
@@ -112,6 +118,42 @@ class GeneralController {
     }
 
 
+    def reservaTour(int id) {
+
+        TTour tTour
+        Long cupo=0
+        Long cupos_reservados=0
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        if (params.containsKey("id")){
+            tTour = TTour.findById(id);
+            cupo = tTour.fCupos;
+            List<TReserva> tReservaList = TReserva.findAllByEstadoAndIdtour(false,tTour.id);
+            tReservaList.forEach {
+                cupos_reservados+=it.totalPersonas;
+            }
+
+
+        }
+        render(view: "/general/reservaTour", model: [tour: tTour,cupo:cupo,cupos_reservados:cupos_reservados,simpleDateFormat:simpleDateFormat]);
+    }
+
+    def salvarReserva() {
+        def totalPersonas = params.totalPersonas as Long
+        def idcliente = ((TUsuarios)session.usuario).id as Long
+        def idtour = params.idtour as Long
+        def idfecha = params.idfecha as Long
+
+        try {
+
+
+
+            generalService.registrar_reserva(totalPersonas, idcliente, idtour, idfecha)
+            render(text: "true")
+        } catch (e) {
+            log.error("Error al salvar la reserva", e)
+            render(text: "false", status: 500)
+        }
+    }
 
     def logout(){
         session.usuario = null

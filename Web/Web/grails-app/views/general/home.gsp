@@ -61,7 +61,7 @@
                             </g:else>
                             <h1>${tour.fNombre}</h1>
 
-                            <div class="border-button"><a href="about.html">Ir</a></div>
+                            <div class="border-button"><a href="./reservaTour?id=${tour.id}">Ir</a></div>
                         </div>
 
                         <div class="container">
@@ -156,6 +156,16 @@
                                                             <g:if test="${((turismo.TUsuarios) session.usuario).administrador == true}">
                                                                 <div class="border-button"><a
                                                                         href="./editarTour?id=${tour.id}">Editar Tour</a>
+                                                                </div>
+                                                            </g:if>
+                                                        </g:if>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <g:if test="${session.usuario}">
+                                                            <g:if test="${((turismo.TUsuarios) session.usuario).administrador == false}">
+                                                                <div class="border-button"><a
+                                                                        href="./reservaTour?id=${tour.id}">Reservar Tour</a>
                                                                 </div>
                                                             </g:if>
                                                         </g:if>

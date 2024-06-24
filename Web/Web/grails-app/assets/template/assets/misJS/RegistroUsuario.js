@@ -5,6 +5,9 @@ function salvar_usuario() {
         usuario: $("#usuario").val(),
         nombre: $("#nombre").val(),
         clave: $("#clave").val(),
+        apellido: $("#apellido").val(),
+        correo: $("#correo").val(),
+        telefono: $("#telefono").val(),
     };
 
     $.post(window.location + "/salvar_usuario", params).then((response) => {

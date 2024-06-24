@@ -29,6 +29,27 @@
                         </div>
                         <div class="col-lg-6">
                             <fieldset>
+                                <label for="apellido" class="form-label">Apellido</label>
+                                <input type="text" name="apellido" class="apellido" id="apellido" placeholder="apellido" autocomplete="on" required>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <fieldset>
+                                <label for="correo" class="form-label">Correo</label>
+                                <input type="text" name="correo" class="correo" id="correo" placeholder="correo" autocomplete="on" required>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <fieldset>
+                                <label for="telefono" class="form-label">Telefono</label>
+                                <input type="text" name="telefono" class="telefono" id="telefono" placeholder="telefono" autocomplete="on" required>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <fieldset>
                                 <label for="usuario" class="form-label">Usuario</label>
                                 <input type="text" name="usuario" class="usuario" id="usuario" placeholder="Usuario" autocomplete="on" required>
                             </fieldset>
