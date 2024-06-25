@@ -225,7 +225,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <h2>¿Estás buscando hacer excursiones locales?</h2>
-                <h4>Haz una reservación haciendo click en el botón</h4>
+                <h4>Haz una reservación con nosotros ya</h4>
             </div>
 
 %{--            <div class="col-lg-4">--}%
