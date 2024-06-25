@@ -74,6 +74,14 @@ class GeneralService {
         tReserva.save(failOnError: true)
     }
 
+    def eliminar_tour(int id) {
+        TTour tTour = TTour.findById(id)
+        if (tTour) {
+            tTour.delete(flush: true)
+        }
+    }
+
+
     def obtener_tours() {
         return TTour.list()
     }

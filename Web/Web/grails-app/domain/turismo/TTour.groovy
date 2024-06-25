@@ -13,6 +13,7 @@ class TTour {
     Date fFecha
     int fCapacidad
     int fCupos
+    Boolean estado
 
     static constraints = {
         fNombre nullable: false
@@ -21,6 +22,7 @@ class TTour {
         fFecha nullable: false
         fCapacidad nullable: false
         fCupos nullable: false
+        estado nullable: false
     }
 
     String toString(){

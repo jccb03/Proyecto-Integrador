@@ -144,15 +144,18 @@ class GeneralController {
         def idfecha = params.idfecha as Long
 
         try {
-
-
-
             generalService.registrar_reserva(totalPersonas, idcliente, idtour, idfecha)
             render(text: "true")
         } catch (e) {
             log.error("Error al salvar la reserva", e)
             render(text: "false", status: 500)
         }
+    }
+
+    def eliminarTour() {
+        def id = params.id as int
+        generalService.eliminar_tour(id)
+       // redirect(url: '/home')
     }
 
     def logout(){

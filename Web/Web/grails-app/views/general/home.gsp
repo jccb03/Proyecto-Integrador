@@ -46,7 +46,7 @@
         <input type="radio" id="banner4" class="sec-1-input" name="banner">
         <%
             def toursOrdenado = tours.sort { it.id }
-            def primerosTours = toursOrdenado.take(5)
+            def primerosTours = toursOrdenado.take(6)
         %>
         <div class="slider">
             <g:each in="${primerosTours}" var="tour" status="i">
@@ -157,6 +157,9 @@
                                                                 <div class="border-button"><a
                                                                         href="./editarTour?id=${tour.id}">Editar Tour</a>
                                                                 </div>
+                                                                <div class="border-button" onclick="borrarTour(${tour.id})"><a
+                                                                        >Eliminar Tour</a>
+                                                                </div>
                                                             </g:if>
                                                         </g:if>
                                                     </div>
@@ -225,15 +228,26 @@
                 <h4>Haz una reservación haciendo click en el botón</h4>
             </div>
 
-            <div class="col-lg-4">
-                <div class="border-button">
-                    <a href="reservation.html">Reserva ya</a>
-                </div>
-            </div>
+%{--            <div class="col-lg-4">--}%
+%{--                <g:if test="${session.usuario}">--}%
+%{--                    <g:if test="${((turismo.TUsuarios) session.usuario).administrador == false}">--}%
+%{--                        <div class="border-button"><a--}%
+%{--                                href="./reservaTour?id=${tour.id}">Reservar Tour</a>--}%
+%{--                        </div>--}%
+%{--                    </g:if>--}%
+%{--                </g:if>--}%
+%{--            </div>--}%
+
+%{--            <div class="col-lg-4">--}%
+%{--                <div class="border-button">--}%
+%{--                    <a href="./reservaTour?id=${tour.id}">>Reserva ya</a>--}%
+%{--                </div>--}%
+%{--            </div>--}%
         </div>
     </div>
 </div>
 <asset:javascript src="assets/misJS/organizarTours.js"/>
-
+<asset:javascript src="assets/misJS/reservaTour.js"/>
+<asset:javascript src="assets/misJS/home.js"/>
 </body>
 </html>

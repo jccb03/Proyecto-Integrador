@@ -4,24 +4,24 @@
 //
 // })();
 //
-// function logout(id) {
-//     let confirmDelete = confirm("¿Estás seguro de que desea salir?");
+// function borrarTour(id) {
+//     let confirmDelete = confirm("¿Estás seguro de que quieres eliminar este tour?");
 //     if (confirmDelete) {
-//         // let params = {
-//         //     id: id
-//         // };
-//         $.post(window.location + "/logout", params)
+//         let params = {
+//             id: id
+//         };
+//         $.post(window.location + "/eliminarTour", params)
 //             .then((data) => {
 //                 if (data == "true") {
-//                     alert("Saliendo")
+//                     alert("Tour eliminado")
 //                 } else {
-//                     alert("No se pudo salir");
+//                     alert("No se pudo eliminar");
 //                 }
 //             })
 //             .fail((error) => {
 //                 console.log(error);
 //             });
-//         alert("Estamos saliendo" );
+//         alert("Estamos borrando el tour " + id);
 //     } else {
 //         alert("Operación cancelada");
 //     }
