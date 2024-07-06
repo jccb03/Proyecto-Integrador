@@ -22,6 +22,30 @@ class GeneralController {
         respond tours as JSON
     }
 
+
+
+    def toursAdm() {
+        def tours = generalService.obtener_tours()
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy")
+        List<Long> cupos = []
+
+            tours.each { tour ->
+                if (tour) {
+                    Long cupo = tour.fCupos ?: 0
+                    Long cupos_reservados = TReserva.findAllByEstadoAndTour(true, tour).sum { it.totalPersonas ?: 0 } ?: 0
+                    cupos.add(cupos_reservados)
+                } else {
+                    println("Tour con id ${params.id} no encontrado.")
+                    cupos.add(0)
+                }
+            }
+
+        println("cupos: " + cupos)
+        render(view: "/general/toursAdm", model: [tours: tours, cuposreservados: cupos])
+    }
+
+
+
     def crearTour() {
         render(view: "/general/crearTour");
     }
@@ -32,6 +56,28 @@ class GeneralController {
             tTour = TTour.findById(id);
         }
         render(view: "/general/editarTour", model: [tour: tTour]);
+    }
+
+    def editarTourinfo(int id) {
+        TTour tTour = null;
+        if (params.containsKey("id")){
+            tTour = TTour.findById(id);
+        }
+        render(view: "/general/editarTourinfo", model: [tour: tTour]);
+    }
+
+    def infoTour (int id){
+        TTour tTour = TTour.findById(id);
+        def reservas =  generalService.obtener_reservaTour(tTour);
+        render(view: "/general/infoTour", model: [tour: tTour, reservas:reservas]);
+    }
+
+    def editar_usuario(int id) {
+        TUsuarios tUsuario = null;
+        if (params.containsKey("id")){
+            tUsuario = TUsuarios.findById(id);
+        }
+        render(view: "/general/editar_usuario", model: [usuario: tUsuario]);
     }
 
     // Este método solo renderiza la vista para el registro
@@ -45,43 +91,89 @@ class GeneralController {
 
     // Este método procesa el registro del usuario
     def salvar_usuario() {
-        def nombre = params.nombre
-        def usuario = params.usuario
-        def clave = params.clave
-        def apellido = params.apellido
-        def correo = params.correo
-        def telefono = params.telefono
+        String nombre = params.nombre
+        String usuario = params.usuario
+        String clave = params.clave
+        String apellido = params.apellido
+        String correo = params.correo
+        String telefono = params.telefono
+        String cedula = params.cedula
 
-        //println "Intentando registrar usuario: $usuario"
+        //println "Intentando registrar usuario: $usuarFio"
         try {
             // Llamada correcta al método del servicio
-            generalService.registrar_usuario(0,nombre, usuario, clave, false, apellido, correo, telefono)
+            generalService.registrar_usuario(0, nombre, usuario, apellido, correo, telefono, cedula, clave, false, true)
             render(text: "true")
         } catch (e) {
             log.error("Error al registrar usuario", e)
             render(text: "false", status: 500)
         }
+    }
 
+    def modificar_usuario() {
+        int id = params.id
+        String nombre = params.nombre
+        String usuario = params.usuario
+        String clave = params.clave
+        String apellido = params.apellido
+        String correo = params.correo
+        String telefono = params.telefono
+
+        String cedula = params.cedula
+
+        boolean admin = Boolean.parseBoolean(params.administrador)
+        boolean estado = true
+
+        try {
+            generalService.registrar_usuario(id, nombre, usuario, apellido, correo, telefono, cedula, clave, admin, estado)
+            render(text: "true")
+        } catch (e) {
+            log.error("Error al registrar usuario", e)
+            render(text: "false", status: 500)
+        }
+    }
+
+    def eliminar_usuario(int id){
+        try{
+            generalService.deshabilitar_usuario(id);
+            render(text: "true")
+        }
+        catch (e) {
+            log.error("Error al registrar usuario", e)
+            render(text: "false", status: 500)
+        }
     }
 
     def salvar_admin() {
+        def cedula = params.cedula
         def nombre = params.nombre
+        def apellido = params.apellido
+        def correo = params.correo
+        def telefono = params.telefono
         def usuario = params.usuario
         def clave = params.clave
-        boolean admin = params.admin
-        //println "Intentando registrar usuario: $usuario"
+        boolean admin = true
+        boolean estado = params.estado
+        println(params)
+
         try {
-            // Llamada correcta al método del servicio
-            generalService.registrar_usuario(0,nombre, usuario, clave, admin)
+            // Call the method with individual parameters
+            generalService.registrar_usuario(0, nombre, usuario, apellido, correo, telefono, cedula, clave, admin, estado)
             render(text: "true")
         } catch (e) {
             log.error("Error al registrar usuario", e)
             render(text: "false", status: 500)
         }
+    }
 
+
+    def usuariosAdm(){
+        def usuarios = generalService.obtener_usuarios_activos()
+        render (view: "/general/usuariosAdm", model: [usuarios:usuarios])
     }
 
     def modificar_tour(){
+        print(params)
         def id = params.id as int
         def nombre = params.nombre as String
         def descripcion = params.descripcion
@@ -107,7 +199,6 @@ class GeneralController {
         def cupos = params.cupos as int
 
         try {
-            // Llamada correcta al método del servicio
             generalService.registrar_tour(0, nombre, descripcion, precio, fecha, capacidad, cupos)
             render(text: "true")
         } catch (e) {
@@ -118,21 +209,29 @@ class GeneralController {
     }
 
 
+    def reservasAdm(){
+        def reservas = generalService.obtener_reservas_activas()
+        def reservasUnicas =  generalService.obtener_reservas_activas().collect { it.tour.fNombre }.unique()
+        println("reservasUnicas: " + reservasUnicas)
+        render (view: "/general/reservasAdm", model: [reservas:reservas, select: reservasUnicas])
+    }
+
     def reservaTour(int id) {
 
         TTour tTour
-        Long cupo=0
-        Long cupos_reservados=0
+        Long cupo = 0
+        Long cupos_reservados = 0
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         if (params.containsKey("id")){
             tTour = TTour.findById(id);
             cupo = tTour.fCupos;
-            List<TReserva> tReservaList = TReserva.findAllByEstadoAndIdtour(false,tTour.id);
+            //gracias a la relacion, solo se debe usar el objeto tTour usando el ByEstadoAndTour
+            List<TReserva> tReservaList = TReserva.findAllByEstadoAndTour(true,tTour);
+//            println("TTour: "+tTour)
+//            println("TReservaList: " + tReservaList)
             tReservaList.forEach {
                 cupos_reservados+=it.totalPersonas;
             }
-
-
         }
         render(view: "/general/reservaTour", model: [tour: tTour,cupo:cupo,cupos_reservados:cupos_reservados,simpleDateFormat:simpleDateFormat]);
     }

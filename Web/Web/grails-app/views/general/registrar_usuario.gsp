@@ -24,27 +24,32 @@
                         <div class="col-lg-6">
                             <fieldset>
                                 <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" name="nombre" class="nombre" id="nombre" placeholder="nombre" autocomplete="on" required>
+                                <input type="text" name="nombre" class="nombre" id="nombre" placeholder="Nombre" autocomplete="on" required>
                             </fieldset>
                         </div>
                         <div class="col-lg-6">
                             <fieldset>
                                 <label for="apellido" class="form-label">Apellido</label>
-                                <input type="text" name="apellido" class="apellido" id="apellido" placeholder="apellido" autocomplete="on" required>
+                                <input type="text" name="apellido" class="apellido" id="apellido" placeholder="Apellido" autocomplete="on" required>
                             </fieldset>
                         </div>
-
+                        <div class="col-lg-6">
+                            <fieldset>
+                                <label for="apellido" class="form-label">Cedula</label>
+                                <input type="text" name="cedula" class="cedula" id="cedula" placeholder="Cedula" autocomplete="on" required>
+                            </fieldset>
+                        </div>
                         <div class="col-lg-6">
                             <fieldset>
                                 <label for="correo" class="form-label">Correo</label>
-                                <input type="text" name="correo" class="correo" id="correo" placeholder="correo" autocomplete="on" required>
+                                <input type="email" name="correo" class="correo" id="correo" placeholder="Correo" autocomplete="on" required>
                             </fieldset>
                         </div>
 
                         <div class="col-lg-6">
                             <fieldset>
                                 <label for="telefono" class="form-label">Telefono</label>
-                                <input type="text" name="telefono" class="telefono" id="telefono" placeholder="telefono" autocomplete="on" required>
+                                <input type="phone" name="telefono" class="telefono" id="telefono" placeholder="Telefono" autocomplete="on" required>
                             </fieldset>
                         </div>
 
@@ -65,8 +70,14 @@
                                 <button class="main-button" type="button" onclick="salvar_usuario()">Confirmar</button>
                             </fieldset>
                         </div>
-
-
+                        <g:if test="${(session.usuario)}">
+                            <g:if test="${((turismo.TUsuarios) session.usuario).administrador == true}">
+                                <asset:javascript src="assets/misJS/RegistrarUsuarioA.js"/>
+                            </g:if>
+                        </g:if>
+                        <g:else>
+                            <asset:javascript src="assets/misJS/RegistroUsuario.js"/>
+                        </g:else>
                     </div>
                 </form>
             </div>
@@ -74,6 +85,6 @@
     </div>
 </div>
 <asset:javascript src="assets/misJS/login.js"/>
-<asset:javascript src="assets/misJS/RegistroUsuario.js"/>
+<asset:javascript src="assets/misJS/RegistroUsuarioA.js"/>
 </body>
 </html>

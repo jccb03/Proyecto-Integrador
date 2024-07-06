@@ -28,20 +28,40 @@ class GeneralService {
 //        TReserva tReserva = TReserva.findByUsuario(usuario);
 //        return tUsusarios;
 //    }
-
-    def registrar_usuario(int id, String nombre, String usuario, String clave, boolean admin, String apellido, String correo, String telefono) {
+    def deshabilitar_usuario(int id){
         TUsuarios tUsuarios = TUsuarios.findById(id);
+        if (tUsuarios) {
+            tUsuarios.setEstado(false)
+        }
+        tUsuarios.save(failOnError: true)
+    }
+
+    def obtener_reservaTour(TTour tTour){
+        def reservas = TReserva.findAllByTour(tTour)
+        return reservas
+    }
+
+    def registrar_usuario(int id, String nombre, String usuario, String apellido, String correo, String telefono, String cedula, String clave, boolean admin, boolean estado) {
+        TUsuarios tUsuarios = TUsuarios.findByUsuario(usuario)
         if (tUsuarios) {
             tUsuarios.setNombre(nombre)
             tUsuarios.setUsuario(usuario)
             tUsuarios.setApellido(apellido)
             tUsuarios.setTelefono(telefono)
             tUsuarios.setCorreo(correo)
+            tUsuarios.setAdministrador(admin)
+            tUsuarios.setEstado(estado)
+            tUsuarios.setCedula(cedula)
+            println("Clave de tUsuario: " + tUsuarios.getClave())
+            println("Clave nueva: "+ clave)
+
+            println("Clave antes: "+ tUsuarios.clave)
             if (!tUsuarios.getClave().equals(clave) && !clave.isEmpty()) {
                 tUsuarios.setClave(clave)
             }
+            println("Clave despues: "+ tUsuarios.clave)
         } else {
-            tUsuarios = new TUsuarios(nombre: nombre, usuario: usuario, clave: clave, administrador: admin, apellido: apellido, correo: correo, telefono: telefono)
+            tUsuarios = new TUsuarios(nombre: nombre, usuario: usuario, clave: clave, administrador: admin, apellido: apellido, correo: correo, telefono: telefono, cedula: cedula, estado: true)
         }
         tUsuarios.save(failOnError: true)
     }
@@ -58,19 +78,22 @@ class GeneralService {
             tTour.setfCupos(cupos)
 
         } else {
-            tTour = new TTour(fNombre: nombre, fDescripcion: descripcion, fPrecio: precio, fFecha: fecha, fCapacidad: capacidad, fCupos: cupos)
+            tTour = new TTour(fNombre: nombre, fDescripcion: descripcion, fPrecio: precio, fFecha: fecha, fCapacidad: capacidad, fCupos: cupos, estado: true)
         }
         tTour.save(failOnError: true)
     }
 
     def registrar_reserva(long totalPersonas, Long idcliente, Long idtour, Long idfecha) {
+        TUsuarios usuarios = TUsuarios.findById(idcliente)
+        TTour tour = TTour.findById(idtour)
         TReserva tReserva = new TReserva(
                 totalPersonas: totalPersonas,
-                idcliente: idcliente,
-                idtour: idtour,
+                usuarios: usuarios,
+                tour: tour,
                 idfecha: idfecha,
-                estado: false
+                estado: true
         )
+        println("tReserva": tReserva)
         tReserva.save(failOnError: true)
     }
 
@@ -82,8 +105,22 @@ class GeneralService {
     }
 
 
+
     def obtener_tours() {
         return TTour.list()
     }
+
+    def obtener_usuarios() {
+        return TUsuarios.list()
+    }
+
+    def obtener_usuarios_activos() {
+        return TUsuarios.findAllByEstado(true)
+    }
+
+    def obtener_reservas_activas(){
+        return TReserva.findAllByEstado(true)
+    }
+
 }
 

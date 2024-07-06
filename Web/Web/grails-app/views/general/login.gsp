@@ -24,13 +24,13 @@
                         <div class="col-lg-6">
                             <fieldset>
                                 <label for="user" class="form-label">Usuario</label>
-                                <input type="text" name="user" class="user" id="user" placeholder="Usuario" autocomplete="on" value="A" required>
+                                <input type="text" name="user" class="user" id="user" placeholder="Usuario" autocomplete="on" value="" required>
                             </fieldset>
                         </div>
                         <div class="col-lg-6">
                             <fieldset>
                                 <label for="clave" class="form-label">Contraseña</label>
-                                <input type="password" name="password" class="password" id="clave" placeholder="******" value="A" autocomplete="on" required>
+                                <input type="password" name="password" class="password" id="clave" placeholder="******" value="" autocomplete="on" required>
                             </fieldset>
                         </div>
                         <div class="col-lg-12">

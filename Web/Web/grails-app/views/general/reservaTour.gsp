@@ -10,7 +10,7 @@
 <html lang="es">
 <head>
     <meta name="layout" content="main"/>
-    <title>Home</title>
+    <title>Reservar Tour</title>
     <style>
     .tour {
         display: none;
