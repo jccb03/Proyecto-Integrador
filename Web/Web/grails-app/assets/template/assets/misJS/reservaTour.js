@@ -2,22 +2,41 @@ let _id =0;
 function salvarReserva() {
     let params = {
         totalPersonas: $("#totalPersonas").val(),
-        idcliente: $("#cliente").val(),
+        idcliente: $("#clienteid").val(),
         // idfecha: $("#fechas").val(),
         idfecha: 1,
         idtour: idtour,
     };
 
-    $.post(String(window.location).split("?")[0] + "/salvarReserva", params).then((response) => {
-        if (response === "true") {
-            alert("Reserva salvada exitosamente");
-        } else {
-            alert("Error al registrar el tour.");
-        }
-    }).fail((error) => {
-        console.log("Error: ", error);
-        alert("Error al conectar con el servidor.");
-    });
+    $.post(String(window.location).split("?")[0] + "/salvarReserva", params)
+        .then((response) => {
+            if (response === "true") {
+                Swal.fire({
+                    title: '¡Reserva salvada exitosamente! Se le redireccionará al inicio.',
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then((result) => {
+                    // Redireccionar después de que se cierre la alerta
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        location.href = "/turismo-facil";
+                    }
+                })
+            } else {
+                Swal.fire({
+                    title: 'Error al registrar el tour',
+                    text: 'Hubo un problema al intentar salvar la reserva.',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        })
+        .fail((error) => {
+            console.log("Error: ", error);
+            Swal.fire({
+                title: 'Error al conectar con el servidor',
+                text: 'Hubo un problema al conectar con el servidor.',
+                confirmButtonText: 'Ok'
+            });
+        });
 }
 
 

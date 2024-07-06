@@ -1,4 +1,5 @@
-let _id =0;
+let _id = 0;
+
 function salvar_tour() {
     let params = {
         // asegúrate de que los valores se están extrayendo correctamente
@@ -12,12 +13,29 @@ function salvar_tour() {
 
     $.post(window.location + "/salvar_tour", params).then((response) => {
         if (response === "true") {
-            alert("Tour creado exitosamente");
+            Swal.fire({
+                title: 'Éxito',
+                text: 'Tour creado exitosamente',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redireccionar después de confirmar
+                    location.href = "/turismo-facil/toursAdm";
+                }
+            });
         } else {
-            alert("Error al registrar el tour.");
+            Swal.fire({
+                title: 'Error',
+                text: 'Error al registrar el tour.',
+                confirmButtonText: 'OK'
+            });
         }
     }).fail((error) => {
         console.log("Error: ", error);
-        alert("Error al conectar con el servidor.");
+        Swal.fire({
+            title: 'Error',
+            text: 'Error al conectar con el servidor.',
+            confirmButtonText: 'OK'
+        });
     });
 }

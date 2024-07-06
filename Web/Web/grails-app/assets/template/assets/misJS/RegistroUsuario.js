@@ -8,18 +8,38 @@ function salvar_usuario() {
         apellido: $("#apellido").val(),
         correo: $("#correo").val(),
         telefono: $("#telefono").val(),
+        administrador: false,
+        cedula: $("#cedula").val(),
+        estado : true
     };
 
-    $.post(window.location + "/salvar_usuario", params).then((response) => {
-        if (response === "true") {
-            alert("Usuario registrado exitosamente.");
-        } else {
-            alert("Error al registrar el usuario.");
-        }
-    }).fail((error) => {
-        console.log("Error: ", error);
-        alert("Error al conectar con el servidor.");
-    });
+    $.post(window.location.pathname + "/salvar_usuario", params)
+        .then((response) => {
+            if (response === "true") {
+                Swal.fire({
+                    title: '¡Usuario registrado exitosamente!',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    location.href = "./turismo-facil"
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error al registrar el usuario',
+                    text: 'Hubo un problema al intentar registrar el usuario.',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        })
+        .fail((error) => {
+            console.log("Error: ", error);
+            Swal.fire({
+                title: 'Error al conectar con el servidor',
+                text: 'Hubo un problema al conectar con el servidor.',
+                confirmButtonText: 'Ok'
+            });
+        });
+
 }
 
 // function redirectARegistro() {

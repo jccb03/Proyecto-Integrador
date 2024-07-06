@@ -2,6 +2,8 @@ package turismo
 
 class TReserva {
 
+    static belongsTo = [tour: TTour, usuarios: TUsuarios] // Definición de la relación con TTour y TUsuario
+
     static mapping = {
         version(false)
         table("t_reserva")
@@ -11,15 +13,15 @@ class TReserva {
 
 
     Boolean estado
-    Long idtour
-    Long idcliente
+//    Long idtour
+//    Long idcliente
     Long idfecha
     Long totalPersonas
 
     static constraints = {
         estado nullable: true
-        idtour nullable: false
-        idcliente nullable: false
+//        idtour nullable: false
+//        idcliente nullable: false
         idfecha nullable: false
         totalPersonas nullable: false
 
