@@ -105,6 +105,10 @@ class GeneralService {
     }
 
 
+    def conseguirToursNombre(String nombre){
+       def tours = TTour.findAllByFNombreIlike("%${nombre}%")
+       return tours
+    }
 
     def obtener_tours() {
         return TTour.list()

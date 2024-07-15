@@ -46,7 +46,12 @@
                             <tr>
                                 <td>${tour.id}</td>
                                 <td><a href="./toursAdm/infoTour?id=${tour.id}">${tour.fNombre}</a></td>
-                                <td>${tour.fDescripcion.substring(0, 20)}...</td>
+                                <g:if test="${tour.fDescripcion.toString().length() >= 50}">
+                                    <td>${tour.fDescripcion.toString().substring(0, 50)}...</td>
+                                </g:if>
+                                <g:else>
+                                    <td>${tour.fDescripcion.toString()}</td>
+                                </g:else>
                                 <td>${tour.fPrecio}</td>
                                 <td><g:formatDate date="${tour.fFecha}" format="dd/MM/yyyy" /></td>
                                 <td>${tour.fCupos}</td>

@@ -236,6 +236,8 @@ class GeneralController {
         render(view: "/general/reservaTour", model: [tour: tTour,cupo:cupo,cupos_reservados:cupos_reservados,simpleDateFormat:simpleDateFormat]);
     }
 
+
+
     def salvarReserva() {
         def totalPersonas = params.totalPersonas as Long
         def idcliente = ((TUsuarios)session.usuario).id as Long
@@ -251,14 +253,22 @@ class GeneralController {
         }
     }
 
+
     def eliminarTour() {
         def id = params.id as int
         generalService.eliminar_tour(id)
        // redirect(url: '/home')
     }
 
-    def logout(){
+    def buscarTours() {
+        def resultado = generalService.conseguirToursNombre(params.buscar)
+        render(view: "/general/resultadosBusqueda", model: [resultado: resultado])
+    }
+
+
+        def logout(){
         session.usuario = null
         redirect(url: '/login')
     }
+
 }

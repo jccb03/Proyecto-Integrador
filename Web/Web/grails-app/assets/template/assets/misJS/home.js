@@ -1,28 +1,37 @@
-// let _id = 0;
-// (function () {
-//
-//
-// })();
-//
-// function borrarTour(id) {
-//     let confirmDelete = confirm("¿Estás seguro de que quieres eliminar este tour?");
-//     if (confirmDelete) {
-//         let params = {
-//             id: id
-//         };
-//         $.post(window.location + "/eliminarTour", params)
-//             .then((data) => {
-//                 if (data == "true") {
-//                     alert("Tour eliminado")
-//                 } else {
-//                     alert("No se pudo eliminar");
-//                 }
-//             })
-//             .fail((error) => {
-//                 console.log(error);
-//             });
-//         alert("Estamos borrando el tour " + id);
-//     } else {
-//         alert("Operación cancelada");
-//     }
-// }
+let _id = 0;
+(function () {
+
+
+})();
+
+function buscarTour() {
+    let params = {
+        nombre: $("#nombre").val()
+    }
+
+    $.post("/turismo-facil/general/buscarTours", params)
+        .then((response) => {
+            $("#resultado").html(response);
+        })
+        .fail((error) => {
+            console.log("Error: ", error);
+            Swal.fire({
+                title: 'Error al conectar con el servidor',
+                text: 'Hubo un problema al conectar con el servidor.',
+                confirmButtonText: 'Ok'
+            });
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
