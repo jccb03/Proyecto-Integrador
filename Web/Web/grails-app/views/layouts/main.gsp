@@ -86,7 +86,7 @@
                         </g:if>
 
                         <g:if test="${session.usuario}">
-                            <li><a href="./logout">Logout</a></li>
+                            <li><a href="/turismo-facil/logout">Logout</a></li>
                         </g:if>
                         <g:else>
                             <li><a href="./login">Login</a></li>
@@ -137,16 +137,15 @@
 <asset:javascript src="assets/js/sweetalert2.js"/>
 <asset:javascript src="assets/js/holder/holder.js"/>
 <asset:javascript src="assets/js/dataTables.min.js"/>
-
-%{--<script>--}%
-%{--    Holder.addTheme("dark", {--}%
-%{--        bg: "#000",--}%
-%{--        fg: "#22b3c1",--}%
-%{--        size: 11,--}%
-%{--        font: "Monaco",--}%
-%{--        fontweight: "normal"--}%
-%{--    });--}%
-
+<script>
+Holder.addTheme("dark", {
+        bg: "#000",
+        fg: "#22b3c1",
+        size: 11,
+        font: "Monaco",
+        fontweight: "normal"
+    });
+</script>
 %{--    function bannerSwitcher() {--}%
 %{--        next = $('.sec-1-input').filter(':checked').next('.sec-1-input');--}%
 %{--        if (next.length) next.prop('checked', true);--}%

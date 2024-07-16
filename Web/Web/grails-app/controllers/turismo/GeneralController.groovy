@@ -262,7 +262,9 @@ class GeneralController {
 
     def buscarTours() {
         def resultado = generalService.conseguirToursNombre(params.buscar)
-        render(view: "/general/resultadosBusqueda", model: [resultado: resultado])
+        def reservas =  generalService.obtener_reservaTour(resultado);
+        def reservasRestantes = (int) reservas.sum { it.totalPersonas };
+        render(view: "/general/resultadosBusqueda", model: [resultado: resultado, busqueda: params.buscar, restante: reservasRestantes])
     }
 
 

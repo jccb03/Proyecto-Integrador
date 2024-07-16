@@ -1,7 +1,6 @@
 package turismo
 class TTour {
 
-    static belongsTo = [reserva: TReserva, usuarios: TUsuarios]
     static mapping = {
         version(false)
         table("t_tour")
