@@ -20,7 +20,7 @@ class GeneralInterceptor {
 
             if (requestPath.contains("crearTour") || requestPath.contains("registrar_admin") || requestPath.contains("editarTour")) {
                 if (!usuario.administrador) {
-                    redirect(action: "index")
+                    redirect(controller: general, action: "home")
                     return false
                 }
             }
@@ -29,7 +29,7 @@ class GeneralInterceptor {
             if(request.getServletPath().contains("registrar_usuario")){
                 return true
             }
-            redirect(action: "index")
+            redirect(controller: general, action: "home")
             return false
         }
     }
