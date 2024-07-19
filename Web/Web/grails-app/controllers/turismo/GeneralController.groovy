@@ -13,15 +13,14 @@ class GeneralController {
 
     def index() {
         def tours = generalService.obtener_tours()
-        render(view: "/general/home", model: [tours:tours])
+        render(view: "/general/home", model: [tours: tours])
     }
 
-    def obtenerTours(){
+    def obtenerTours() {
         def tours = generalService.obtener_tours()
         println "Tours: " + tours
         respond tours as JSON
     }
-
 
 
     def toursAdm() {
@@ -29,21 +28,20 @@ class GeneralController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy")
         List<Long> cupos = []
 
-            tours.each { tour ->
-                if (tour) {
-                    Long cupo = tour.fCupos ?: 0
-                    Long cupos_reservados = TReserva.findAllByEstadoAndTour(true, tour).sum { it.totalPersonas ?: 0 } ?: 0
-                    cupos.add(cupos_reservados)
-                } else {
-                    println("Tour con id ${params.id} no encontrado.")
-                    cupos.add(0)
-                }
+        tours.each { tour ->
+            if (tour) {
+                Long cupo = tour.fCupos ?: 0
+                Long cupos_reservados = TReserva.findAllByEstadoAndTour(true, tour).sum { it.totalPersonas ?: 0 } ?: 0
+                cupos.add(cupos_reservados)
+            } else {
+                println("Tour con id ${params.id} no encontrado.")
+                cupos.add(0)
             }
+        }
 
         println("cupos: " + cupos)
         render(view: "/general/toursAdm", model: [tours: tours, cuposreservados: cupos])
     }
-
 
 
     def crearTour() {
@@ -52,7 +50,7 @@ class GeneralController {
 
     def editarTour(int id) {
         TTour tTour = null;
-        if (params.containsKey("id")){
+        if (params.containsKey("id")) {
             tTour = TTour.findById(id);
         }
         render(view: "/general/editarTour", model: [tour: tTour]);
@@ -60,21 +58,21 @@ class GeneralController {
 
     def editarTourinfo(int id) {
         TTour tTour = null;
-        if (params.containsKey("id")){
+        if (params.containsKey("id")) {
             tTour = TTour.findById(id);
         }
         render(view: "/general/editarTourinfo", model: [tour: tTour]);
     }
 
-    def infoTour (int id){
+    def infoTour(int id) {
         TTour tTour = TTour.findById(id);
-        def reservas =  generalService.obtener_reservaTour(tTour);
-        render(view: "/general/infoTour", model: [tour: tTour, reservas:reservas]);
+        def reservas = generalService.obtener_reservaTour(tTour);
+        render(view: "/general/infoTour", model: [tour: tTour, reservas: reservas]);
     }
 
     def editar_usuario(int id) {
         TUsuarios tUsuario = null;
-        if (params.containsKey("id")){
+        if (params.containsKey("id")) {
             tUsuario = TUsuarios.findById(id);
         }
         render(view: "/general/editar_usuario", model: [usuario: tUsuario]);
@@ -133,8 +131,8 @@ class GeneralController {
         }
     }
 
-    def eliminar_usuario(int id){
-        try{
+    def eliminar_usuario(int id) {
+        try {
             generalService.deshabilitar_usuario(id);
             render(text: "true")
         }
@@ -167,12 +165,12 @@ class GeneralController {
     }
 
 
-    def usuariosAdm(){
+    def usuariosAdm() {
         def usuarios = generalService.obtener_usuarios_activos()
-        render (view: "/general/usuariosAdm", model: [usuarios:usuarios])
+        render(view: "/general/usuariosAdm", model: [usuarios: usuarios])
     }
 
-    def modificar_tour(){
+    def modificar_tour() {
         print(params)
         def id = params.id as int
         def nombre = params.nombre as String
@@ -181,10 +179,10 @@ class GeneralController {
         def fecha = new Date(funciones.normalFormat(params.fecha).toLong())
         def capacidad = params.capacidad as int
         def cupos = params.cupos as int
-        try{
+        try {
             generalService.registrar_tour(id, nombre, descripcion, precio, fecha, capacidad, cupos);
             render(text: "true");
-        } catch(e) {
+        } catch (e) {
             log.error("Error al modificar el tour", e)
             render(text: "false", status: 500)
         }
@@ -209,11 +207,11 @@ class GeneralController {
     }
 
 
-    def reservasAdm(){
+    def reservasAdm() {
         def reservas = generalService.obtener_reservas_activas()
-        def reservasUnicas =  generalService.obtener_reservas_activas().collect { it.tour.fNombre }.unique()
+        def reservasUnicas = generalService.obtener_reservas_activas().collect { it.tour.fNombre }.unique()
         println("reservasUnicas: " + reservasUnicas)
-        render (view: "/general/reservasAdm", model: [reservas:reservas, select: reservasUnicas])
+        render(view: "/general/reservasAdm", model: [reservas: reservas, select: reservasUnicas])
     }
 
     def reservaTour(int id) {
@@ -222,25 +220,24 @@ class GeneralController {
         Long cupo = 0
         Long cupos_reservados = 0
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        if (params.containsKey("id")){
+        if (params.containsKey("id")) {
             tTour = TTour.findById(id);
             cupo = tTour.fCupos;
             //gracias a la relacion, solo se debe usar el objeto tTour usando el ByEstadoAndTour
-            List<TReserva> tReservaList = TReserva.findAllByEstadoAndTour(true,tTour);
+            List<TReserva> tReservaList = TReserva.findAllByEstadoAndTour(true, tTour);
 //            println("TTour: "+tTour)
 //            println("TReservaList: " + tReservaList)
             tReservaList.forEach {
-                cupos_reservados+=it.totalPersonas;
+                cupos_reservados += it.totalPersonas;
             }
         }
-        render(view: "/general/reservaTour", model: [tour: tTour,cupo:cupo,cupos_reservados:cupos_reservados,simpleDateFormat:simpleDateFormat]);
+        render(view: "/general/reservaTour", model: [tour: tTour, cupo: cupo, cupos_reservados: cupos_reservados, simpleDateFormat: simpleDateFormat]);
     }
-
 
 
     def salvarReserva() {
         def totalPersonas = params.totalPersonas as Long
-        def idcliente = ((TUsuarios)session.usuario).id as Long
+        def idcliente = ((TUsuarios) session.usuario).id as Long
         def idtour = params.idtour as Long
         def idfecha = params.idfecha as Long
 
@@ -257,18 +254,22 @@ class GeneralController {
     def eliminarTour() {
         def id = params.id as int
         generalService.eliminar_tour(id)
-       // redirect(url: '/home')
+        // redirect(url: '/home')
     }
 
     def buscarTours() {
         def resultado = generalService.conseguirToursNombre(params.buscar)
-        def reservas =  generalService.obtener_reservaTour(resultado);
-        def reservasRestantes = (int) reservas.sum { it.totalPersonas };
-        render(view: "/general/resultadosBusqueda", model: [resultado: resultado, busqueda: params.buscar, restante: reservasRestantes])
+//        def reservas =  generalService.obtener_reservaTour(resultado.first());
+//        def reservasRestantes =(int) reservas.sum { it.totalPersonas };
+        render(view: "/general/resultadosBusqueda", model: [
+                resultado : resultado,
+                busqueda  : params.buscar,
+//                restante: reservasRestantes
+        ])
     }
 
 
-        def logout(){
+    def logout() {
         session.usuario = null
         redirect(url: '/login')
     }

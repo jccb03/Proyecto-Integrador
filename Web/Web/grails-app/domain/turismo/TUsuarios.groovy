@@ -22,12 +22,12 @@ class TUsuarios {
     static constraints = {
         nombre nullable: true
         apellido nullable: true
-        correo nullable: false
-        telefono nullable: false
+        correo nullable: true
+        telefono nullable: true
         cedula nullable: true
-        usuario nullable: false
-        clave nullable: false
-        estado nullable : false
+        usuario nullable: true
+        clave nullable: true
+        estado nullable : true
     }
 
     String toString(){

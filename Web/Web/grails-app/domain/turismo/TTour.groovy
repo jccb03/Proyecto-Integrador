@@ -1,7 +1,7 @@
 package turismo
 class TTour {
 
-    static belongsTo = [reserva: TReserva, usuarios: TUsuarios]
+    static belongsTo = [ usuarios: TUsuarios]
     static mapping = {
         version(false)
         table("t_tour")
@@ -24,6 +24,7 @@ class TTour {
         fCapacidad nullable: false
         fCupos nullable: false
         estado nullable: false
+        usuarios nullable: true
     }
 
     String toString(){

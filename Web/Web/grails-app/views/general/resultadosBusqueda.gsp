@@ -5,7 +5,7 @@
   Time: 5:14 p. m.
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="turismo.TReserva" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="main"/>
@@ -97,7 +97,11 @@
 
                                                                 <p>${tour.fDescripcion}</p>
                                                                 <ul class="info">
-                                                                    <li><i class="fa fa-user"></i> ${tour.fCupos}/${restante} Cupos</li>
+                                                                    <%
+                                                                        List<turismo.TReserva> tReservaList =  turismo.TReserva.findAllByTourAndEstado(tour,false);
+                                                                        int reservados = tReservaList.size()>0?tReservaList.sum {it.totalPersonas}:0;
+                                                                    %>
+                                                                    <li><i class="fa fa-user"></i> ${tour.fCupos} Cupos / ${reservados}  reservados / ${tour.fCupos - reservados} disponibles</li>
                                                                     <li><i class="fa fa-globe"></i> <g:formatDate format="dd/MM/yyyy"
                                                                                                                   date="${tour.fFecha}"/>
                                                                     </li>
