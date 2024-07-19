@@ -10,6 +10,8 @@ class UrlMappings {
         }
 
         get "/"(redirect: "/home")
+        get "/general/index"(redirect: "/home")
+        get "/general/home"(redirect: "/home")
         get "/home"(controller: "general", action: "index")
         get "/login"(controller: "login", action: "index")
         post "/login/iniciar_sesion"(controller: "login", action: "iniciar_sesion")

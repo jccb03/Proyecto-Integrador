@@ -16,7 +16,7 @@ class LoginInterceptor {
                 return true
             }
             else {
-                redirect  controller: "general",actionName: "home"
+                redirect  controller: "general", actionName: "home"
                 return  false
             }
         }
