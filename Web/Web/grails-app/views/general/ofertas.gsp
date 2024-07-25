@@ -5,11 +5,10 @@
   Time: 5:14 p. m.
 --%>
 
-<%@ page import="turismo.TReserva" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Login</title>
+    <title>Ofertas</title>
 </head>
 <body>
 <div class="reservation-form">
@@ -20,18 +19,20 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="section-heading">
-                                    <h2 class="text-white">Resultado de la busqueda</h2>
-
-                                    <h3 class="text-info">"${busqueda}"</h3>
+                                    <h2 class="text-white">Ultimas Ofertas</h2>
                                 </div>
                             </div>
                         </div>
-
+                        <g:if test="${ofertas.isEmpty()}">
+                        <h1 class="text text-white">
+                            No hay ofertas disponibles actualmente...
+                        </h1>
+                        </g:if>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="items">
                                     <div class="row">
-                                        <g:each in="${resultado}" var="tour" status="i">
+                                        <g:each in="${ofertas}" var="oferta" status="i">
                                             <div class="col-lg-12 tour mt-4 mb-4">
                                                 <div class="item">
                                                     <div class="row">
@@ -48,7 +49,7 @@
                                                                                     </div>
                                                                                     <div class="carousel-item">
                                                                                       <img src="holder.js/400x250?theme=dark" class="d-block w-100" alt="...">
-                                                                                    </div>
+                                                                                      </div>
                                                                                   </div>
                                                                                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                                                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,44 +68,29 @@
                                                             <div class="right-content">
                                                                 <div class="row">
                                                                     <div class="col-lg-6">
-                                                                        <h4 class="text-white">${tour.fNombre}</h4>
+                                                                        <h4 class="text-white">${oferta.descripcion} | ${oferta.tour.fNombre} | -${oferta.descuento}%</h4>
                                                                         <span>Republica Dominicana</span>
                                                                     </div>
-
-                                                                    <div class="col-lg-6">
-                                                                        <g:if test="${session.usuario}">
-                                                                            <g:if test="${((turismo.TUsuarios) session.usuario).administrador == true}">
-                                                                                <div class="border-button"><a
-                                                                                        href="./editarTour?id=${tour.id}">Editar Tour</a>
-                                                                                </div>
-                                                                                <div class="border-button" onclick="borrarTour(${tour.id})"><a
-                                                                                        >Eliminar Tour</a>
-                                                                                </div>
-                                                                            </g:if>
-                                                                        </g:if>
-                                                                    </div>
+                                                                    <p>${oferta.tour.fDescripcion}</p>
 
                                                                     <div class="col-lg-6">
                                                                         <g:if test="${session.usuario}">
                                                                             <g:if test="${((turismo.TUsuarios) session.usuario).administrador == false}">
                                                                                 <div class="border-button"><a
-                                                                                        href="./reservaTour?id=${tour.id}">Reservar Tour</a>
+                                                                                        href="./reservaTour?id=${oferta.tour.id}&ofertaId=${oferta.id}">Reservar Tour</a>
                                                                                 </div>
                                                                             </g:if>
                                                                         </g:if>
                                                                     </div>
                                                                 </div>
-                                                                <p>${tour.fDescripcion}</p>
-                                                                <ul class="info">
-                                                                    <%
-                                                                        List<turismo.TReserva> tReservaList =  turismo.TReserva.findAllByTourAndEstado(tour,false);
-                                                                    %>
-                                                                    <li><i class="fa fa-user"></i> ${reservados.get(i)}  reservados / ${tour.fCupos - reservados.get(i)} disponibles</li>
-                                                                    <li><i class="fa fa-globe"></i> <g:formatDate format="dd/MM/yyyy"
-                                                                                                                  date="${tour.fFecha}"/>
-                                                                    </li>
-                                                                    <li><i class="fa fa-home"></i> RD$${tour.fPrecio}</li>
-                                                                </ul>
+                                                                <br>
+                                                                <h3 style="color: white; font-style: bold;">
+                                                                    RD$ ${(oferta.tour.fPrecio - (oferta.tour.fPrecio * (oferta.descuento/100)))}
+                                                                </h3>
+
+                                                                <h3 style="color: white;">
+                                                                   Antes: <span class="oferta-subrayado">RD$ ${oferta.tour.fPrecio}</span>
+                                                                </h3>
                                                             </div>
                                                         </div>
                                                     </div>

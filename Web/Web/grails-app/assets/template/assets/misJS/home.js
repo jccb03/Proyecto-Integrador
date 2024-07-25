@@ -1,8 +1,6 @@
 let _id = 0;
-(function () {
 
 
-})();
 
 function buscarTour() {
     let params = {

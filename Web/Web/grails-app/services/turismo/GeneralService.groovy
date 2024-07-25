@@ -1,5 +1,6 @@
 package turismo
 
+import com.sun.corba.se.impl.oa.toa.TOAFactory
 import grails.gorm.transactions.Transactional
 
 @Transactional
@@ -67,6 +68,12 @@ class GeneralService {
     }
 
 
+    def eliminar_oferta(int id){
+        TOferta tOferta = TOferta.findById(id);
+        tOferta.estado = false;
+        tOferta.save(failOnError: true)
+    }
+
     def registrar_tour(int id, String nombre, String descripcion, BigDecimal precio, Date fecha, int capacidad, int cupos) {
         TTour tTour = TTour.findById(id);
         if (tTour) {
@@ -81,6 +88,7 @@ class GeneralService {
             tTour = new TTour(fNombre: nombre, fDescripcion: descripcion, fPrecio: precio, fFecha: fecha, fCapacidad: capacidad, fCupos: cupos, estado: true)
         }
         tTour.save(failOnError: true)
+
     }
 
     def registrar_reserva(long totalPersonas, Long idcliente, Long idtour, Long idfecha) {
@@ -97,10 +105,18 @@ class GeneralService {
         tReserva.save(failOnError: true)
     }
 
+
+
+    def obtener_ofertas(){
+        def ofertas = TOferta.findAllByEstado(true)
+        return ofertas
+    }
+
     def eliminar_tour(int id) {
         TTour tTour = TTour.findById(id)
         if (tTour) {
-            tTour.delete(flush: true)
+            tTour.estado = false
+            tTour.save(failOnError: true)
         }
     }
 
@@ -120,6 +136,38 @@ class GeneralService {
 
     def obtener_usuarios_activos() {
         return TUsuarios.findAllByEstado(true)
+    }
+
+
+    def registrar_oferta(int tourId,  String descripcion, int cantidadCupos, double descuento, id){
+        TTour tour = TTour.findById(tourId)
+//        def tieneOfertas = false;
+//        if(!TOferta.findAllByEstadoAndTour(true, tour).isEmpty()){
+            if(id!=0){
+                TOferta tOferta = TOferta.findById(id)
+                tOferta.descripcion = descripcion
+                tOferta.descuento = descuento
+                tOferta.cantidadCupos = cantidadCupos
+                tOferta.save(failOnError: true)
+            }else{
+                TOferta tOferta = new TOferta(
+                        tour: tour,
+                        descripcion: descripcion,
+                        cantidadCupos: cantidadCupos,
+                        descuento: descuento,
+                        estado: true
+                )
+                tOferta.save(failOnError: true)
+            }
+//        }else{
+//            tieneOfertas = true;
+//        }
+//        return tieneOfertas;
+
+    }
+
+    def obtenerOfertas() {
+        return TOferta.findAllByEstado(true);
     }
 
     def obtener_reservas_activas(){

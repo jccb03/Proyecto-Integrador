@@ -56,7 +56,37 @@
                     <hr class="mt-3 mb-3" style="border: solid white;"/>
                     <h3 class="text text-white">Cupos: ${tour.fCupos} | Cupos Reservados: ${reservas.sum { it.totalPersonas }}</h3>
                     <hr class="mt-3 mb-3" style="border: solid white;"/>
-                    <h3 class="text text-white">Precio: RD$ ${tour.fPrecio}</h3>
+                    <div style="display: flex;
+                                justify-content: space-between;
+                                align-content: center;
+                                flex-direction: row;
+                                align-items: center;
+                                ">
+
+                        <g:if test="${oferta == null}">
+                            <h3 class="text text-white">Precio: RD$ ${tour.fPrecio}</h3>
+                            <div class="border-button">
+                                <a href="/turismo-facil/crearOferta?id=${tour.id}&tour=1">
+                                    Crear Oferta
+                                </a>
+                            </div>
+
+                    </div>
+                        </g:if>
+                        <g:else>
+                            <h3 class="text text-white">Precio: <span class="oferta-text">RD$ ${tour.fPrecio-((oferta.descuento/100)*tour.fPrecio)}</span>
+                            <span class="oferta-subrayado">${tour.fPrecio}</span></h3>
+                            <div class="border-button">
+                                <a href="/turismo-facil/editarOferta?id=${oferta.id}&tour=1">
+                                    Editar Oferta
+                                </a>
+                            </div>
+
+                    </div>
+                                        <p>${oferta.descripcion} ${oferta.descuento % 1 == 0 ? oferta.descuento.toInteger() : oferta.descuento}% de descuento</p>
+
+                        </g:else>
+
                 </div>
             </div>
         </div>

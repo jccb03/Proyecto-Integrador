@@ -11,7 +11,7 @@ class GeneralInterceptor {
     boolean before() {
         def requestPath = request.getServletPath()
 
-        if (requestPath.contains("home")
+        if (requestPath.contains("home") || requestPath.contains("ofertas.gsp")
         ){
             return true;
         }

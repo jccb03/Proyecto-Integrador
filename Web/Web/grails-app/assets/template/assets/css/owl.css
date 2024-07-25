@@ -185,7 +185,26 @@
   height: 100%;
   width: 100%; }
 
-  .btn-outline-success{
+.btn-outline-success{
     border: solid white;
     color: white;
   }
+
+.oferta-text{
+    color: red;
+}
+
+.oferta-subrayado{
+    text-decoration: line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 2px;
+    color: gray;
+    font-size: medium;
+}
+
+.oferta-subrayado-banner{
+    text-decoration: line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 2px;
+    font-size: medium;
+}

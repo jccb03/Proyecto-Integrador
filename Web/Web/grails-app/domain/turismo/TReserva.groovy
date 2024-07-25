@@ -2,7 +2,7 @@ package turismo
 
 class TReserva {
 
-    static belongsTo = [tour: TTour, usuarios: TUsuarios] // Definición de la relación con TTour y TUsuario
+    static belongsTo = [tour: TTour, usuarios: TUsuarios, oferta: TOferta] // Definición de la relación con TTour y TUsuario
 
     static mapping = {
         version(false)

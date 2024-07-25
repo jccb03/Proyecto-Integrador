@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Tours</title>
+    <title>Ofertas</title>
     <!-- Agregar estilos CSS y scripts JavaScript necesarios -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -18,57 +18,53 @@
             <div class="col-lg-12">
                 <nav class="navbar bg-body-tertiary">
                 <li class="navbar-brand text-white">
-                   <h2 class="text text-white">Tours</h2>
+                   <h2 class="text text-white">Ofertas</h2>
                 </li>
 
                   <ul class="nav nav-pills">
                       <li class="nav-item dropdown mb-3 d-flex" style="">
-                          <a class="nav-link active my-2 my-sm-0" href="./crearTour">Nuevo Tour</a>
-                      </li>
-                      <li class="nav-item dropdown mb-3 d-flex" style="margin-left: 3px;">
-                          <a class="nav-link active my-2 my-sm-0" href="./ofertasAdm">Ofertas</a>
+                          <a class="nav-link active my-2 my-sm-0" href="./elegirTour">Nueva Oferta</a>
                       </li>
                   </ul>
                 </nav>
 
-                <table id="reservas" class="table table-dark">
+                <table id="ofertas" class="table table-dark">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nombre</th>
+                            <th>Tour</th>
                             <th>Descripción</th>
-                            <th>Precio</th>
-                            <th>Fecha</th>
-                            <th>Cupos</th>
-                            <th>Cupos Reservados</th>
-                            <th>Estado</th>
+                            <th>Descuento</th>
+                            <th>Existencia</th>
+                            <th>Costo sin Oferta</th>
+                            <th>Costo Con Oferta</th>
                             <th>Accion</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <g:each in="${tours}" var="tour" status="i">
+                        <g:each in="${ofertas}" var="oferta" status="i">
                             <tr>
-                                <td>${tour.id}</td>
-                                <td><a href="./toursAdm/infoTour?id=${tour.id}">${tour.fNombre}</a></td>
-                                <g:if test="${tour.fDescripcion.toString().length() >= 50}">
-                                    <td>${tour.fDescripcion.toString().substring(0, 50)}...</td>
+                                <td>${oferta.id}</td>
+                                <td><a href="./toursAdm/infoTour?id=${oferta.tour.id}">${oferta.tour.fNombre}</a></td>
+                                <g:if test="${oferta.descripcion.toString().length() >= 50}">
+                                    <td>${oferta.descripcion.toString().substring(0, 50)}...</td>
                                 </g:if>
                                 <g:else>
-                                    <td>${tour.fDescripcion.toString()}</td>
+                                    <td>${oferta.descripcion.toString()}</td>
                                 </g:else>
-                                <td>${tour.fPrecio}</td>
-                                <td><g:formatDate date="${tour.fFecha}" format="dd/MM/yyyy" /></td>
-                                <td>${tour.fCupos}</td>
-                                <td>${cuposreservados[i]}</td>
-                                <td>${tour.estado ? 'Activo' : 'Inactivo'}</td>
+                                <td>${oferta.descuento}%</td>
+                                <td>${oferta.cantidadCupos}</td>
+                                <td>RD$${oferta.tour.fPrecio}</td>
+                                <td>RD$${oferta.tour.fPrecio-((oferta.descuento/100)*oferta.tour.fPrecio)}</td>
                                 <td>
-                                 <button class="btn btn-danger" onclick="eliminar_tour(${tour.id})">
-                                     <i class="fa fa-trash"></i>
-                                 </button>
-                                 <button class="btn btn-info" onclick="editar_tour(${tour.id})">
-                                    <i class="fa fa-pencil"></i>
-                                 </button>
-                             </td>
+                                     <button class="btn btn-danger" onclick="eliminar_oferta(${oferta.id})">
+                                         <i class="fa fa-trash"></i>
+                                     </button>
+
+                                     <button class="btn btn-info" onclick="editar_oferta(${oferta.id})">
+                                          <i class="fa fa-pencil"></i>
+                                      </button>
+                                 </td>
                             </tr>
                         </g:each>
                     </tbody>
@@ -103,10 +99,15 @@
 <script>
     // Inicializar DataTable para la tabla de reservas
     $(document).ready(function() {
-        $('#reservas').DataTable();
+        $('#ofertas').DataTable();
     });
 
-    function eliminar_tour(id) {
+    function editar_oferta(id){
+        location.href="/turismo-facil/editarOferta?id="+id;
+    }
+
+    // Función para eliminar una reserva
+    function eliminar_oferta(id) {
         Swal.fire({
             title: '¿Estás seguro?',
             text: 'No podrás revertir esta acción.',
@@ -120,26 +121,26 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: 'POST',
-                    url: '/eliminar_tour',
+                    url: '/turismo-facil/eliminarOferta',
                     data: { id: id },
                     success: function(response) {
                         if (response === 'true') {
                             Swal.fire(
                                 'Eliminado',
-                                'El tour ha sido eliminado correctamente.',
+                                'La oferta ha sido eliminada correctamente.',
                                 'success'
                             );
+                            // Recargar la página o actualizar la tabla después de eliminar
                             location.reload();
                         } else {
                             Swal.fire(
                                 'Error',
-                                'Hubo un problema al eliminar el tour.',
+                                'Hubo un problema al eliminar la oferta.',
                                 'error'
                             );
                         }
                     },
                     error: function(xhr, status, error) {
-                        console.error('Error al eliminar reserva:', error);
                         Swal.fire(
                             'Error',
                             'Hubo un problema al conectar con el servidor.',
@@ -153,7 +154,7 @@
 
     console.log("${reservasUnicas}");
 
-
+    document.title = "Ofertas";
 
 </script>
 </body>
