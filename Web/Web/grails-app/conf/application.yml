@@ -40,7 +40,7 @@ endpoints:
   jmx:
     enabled: true
 server:
-  port: 8081
+  port: 9000
   session:
     timeout: 86400
   tomcat:
@@ -133,9 +133,9 @@ environments:
       dbCreate: update
       url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
   production:
-#    jasper:
-#      dir:
-#        reports: '/srv/app/web/reports'
+    #    jasper:
+    #      dir:
+    #        reports: '/srv/app/web/reports'
     dataSource:
       dbCreate: none
       #            url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
@@ -158,3 +158,15 @@ environments:
         testOnReturn: false
         jdbcInterceptors: ConnectionState
         defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+---
+grails:
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: justin.quijada13@gmail.com
+        password: oetj pnur lndo dcef
+        props:
+            mail.smtp.auth: true
+            mail.smtp.starttls.enable: true
+            mail.smtp.starttls.required: true
+            mail.smtp.socketFactory.fallback: false

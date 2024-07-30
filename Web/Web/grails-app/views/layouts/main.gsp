@@ -34,15 +34,15 @@
         color: inherit;
     }
 
-    .btn-outline-success{
-            border: solid white;
-            color: white;
-          }
+    .btn-outline-success {
+        border: solid white;
+        color: white;
+    }
 
-          body > header > div > div > div > nav > ul > li.nav-item > form > button{
-                border: solid white;
-                            color: white;
-          }
+    body > header > div > div > div > nav > ul > li.nav-item > form > button {
+        border: solid white;
+        color: white;
+    }
     </style>
 
     <!-- VENDOR CSS -->
@@ -87,7 +87,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrar</a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-bs-toggle="dropdown" aria-expanded="false">Administrar</a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item" href="/turismo-facil/usuariosAdm">Usuarios</a></li>
                                     </ul>
@@ -99,34 +100,39 @@
 
                     <!-- Buscador de Tours -->
 
-                    <g:if test="${session.usuario}">
+                        <g:if test="${session.usuario}">
 
-                        <g:if test="${((turismo.TUsuarios) session.usuario).administrador == false}">
-                            <li><a href="/turismo-facil/ofertas">Ofertas</a></li>
-                            <li class="nav-item">
-                                <form class="d-flex" action="/turismo-facil/buscarTours" method="POST">
-                                    <input class="form-control me-2" type="search" placeholder="Buscar Tours" aria-label="Search" name="buscar">
-                                    <button class="btn btn-outline-success" type="submit" onclick="buscarTour()">Buscar</button>
-                                </form>
-                            </li>
+                            <g:if test="${((turismo.TUsuarios) session.usuario).administrador == false}">
+                                <li><a href="/turismo-facil/ofertas">Ofertas</a></li>
+                                <li class="nav-item">
+                                    <form class="d-flex" action="/turismo-facil/buscarTours" method="POST">
+                                        <input class="form-control me-2" type="search" placeholder="Buscar Tours"
+                                               aria-label="Search" name="buscar">
+                                        <button class="btn btn-outline-success" type="submit"
+                                                onclick="buscarTour()">Buscar</button>
+                                    </form>
+                                </li>
 
 
-                            <a class='menu-trigger'>
-                                <span>Menu</span>
-                            </a>
+                                <a class='menu-trigger'>
+                                    <span>Menu</span>
+                                </a>
+
+                            </g:if>
 
                         </g:if>
-
-                    </g:if>
-<g:if test="${session.usuario}">
-                                                    <li>
-                                                    <a href="/turismo-facil/logout">Logout</a>
-                                                    </li>
-                                                    </g:if>
-                                                    <g:else>
-                                                        <li><a href="./login">Login</a></li>
-                                                    </g:else>
-                            </ul>
+                        <g:if test="${session.usuario}">
+                            <li>
+                                <a href="/turismo-facil/logout">Logout</a>
+                            </li>
+                        </g:if>
+                        <g:else>
+                            <li><a href="./login">Login</a></li>
+                        </g:else>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
                     <!-- ***** Menu End ***** -->
                 </nav>
             </div>
@@ -156,7 +162,7 @@
 <asset:javascript src="assets/js/holder/holder.js"/>
 <asset:javascript src="assets/js/dataTables.min.js"/>
 <script>
-Holder.addTheme("dark", {
+    Holder.addTheme("dark", {
         bg: "#000",
         fg: "#22b3c1",
         size: 11,

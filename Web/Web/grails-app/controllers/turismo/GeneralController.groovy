@@ -10,6 +10,7 @@ class GeneralController {
 
     // Inyección del servicio
     GeneralService generalService
+    def correoService;
 
     def index() {
         def tours = generalService.obtener_tours()
@@ -160,7 +161,7 @@ class GeneralController {
     }
 
     def modificar_usuario() {
-        int id = params.id
+        int id = params.id as int
         String nombre = params.nombre
         String usuario = params.usuario
         String clave = params.clave
@@ -325,15 +326,35 @@ class GeneralController {
         def idcliente = ((TUsuarios) session.usuario).id as Long
         def idtour = params.idtour as Long
         def idfecha = params.idfecha as Long
+        def correoUsuario = ((TUsuarios) session.usuario).correo
+//        def oferta = TOferta.findById(params.ofertaId)
+        def oferta = null
+
+//        if (oferta == null) {
+//
+//            render(text: "Oferta not found", status: 404)
+//            return
+//        }
 
         try {
-            generalService.registrar_reserva(totalPersonas, idcliente, idtour, idfecha)
+            def reserva = new TReserva(totalPersonas: totalPersonas, clienteId: idcliente, tourId: idtour, fechaId: idfecha, oferta: oferta)
+            reserva.save(flush: true)
+
+            // Send confirmation email
+            String[] correos = [correoUsuario]
+            correoService.enviarEmail(correos, "VOLANTE DE RESERVACION \n", "HOLA, para procesar la reserva completamente favor de hacer un deposito a la siguiente cuenta")
+
             render(text: "true")
         } catch (e) {
             log.error("Error al salvar la reserva", e)
             render(text: "false", status: 500)
         }
     }
+
+
+
+
+
 
 
     def eliminarTour() {
@@ -403,7 +424,7 @@ class GeneralController {
         def ofertas = generalService.obtenerOfertas()
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy")
 //        List<Long> cupos = []
-
+//
 //        ofertas.gsp.each { tour ->
 //            if (tour) {
 //                Long cupo = tour.fCupos ?: 0

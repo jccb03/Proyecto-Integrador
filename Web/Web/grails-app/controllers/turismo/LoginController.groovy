@@ -5,8 +5,13 @@ import FuncionesGenerales.Funciones
 class LoginController {
     def generalService;
     Funciones funciones = new Funciones();
+    def correoService;
 
     def index() {
+//        String [] correos =  ["justin_quijada@hotmail.com"];
+//
+//
+//       correoService.enviarEmail(correos,"VOLANTE DE RESERVACION ","Hola, para confirmar su reserva")
         render (view: "/general/login")
     }
 
@@ -21,7 +26,7 @@ class LoginController {
         TUsuarios usuario = generalService.iniciar_sesion(username,password);
         if (usuario){
             session.setAttribute("usuario",usuario);
-            println(session.usuario);
+//            println(session.usuario);
             render(text: "true");
         }else {
             session.removeAttribute("usuario");
