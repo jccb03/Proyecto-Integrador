@@ -73,7 +73,7 @@
                 <nav class="main-nav">
 %{--                    <!-- ***** Logo Start ***** -->--}%
                     <a href="/turismo-facil/home" class="logo">
-                        <asset:image src="assets/images/palmera1.png" alt=""/>
+%{--                        <asset:image src="assets/images/palmera1.png" alt=""/>--}%
 
                     </a>
                     <!-- ***** Logo End ***** -->
