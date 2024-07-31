@@ -337,13 +337,19 @@ class GeneralController {
 //        }
 
         try {
-            def reserva = new TReserva(totalPersonas: totalPersonas, clienteId: idcliente, tourId: idtour, fechaId: idfecha, oferta: oferta)
-            reserva.save(flush: true)
+//            def reserva = new TReserva(totalPersonas: totalPersonas, clienteId: idcliente, tourId: idtour, fechaId: idfecha, oferta: oferta)
+//            reserva.save(flush: true)
+
+            def reserva  =  generalService.registrar_reserva(
+                    totalPersonas,
+                    idcliente,
+                    idtour,
+                    idfecha
+            )
 
             // Send confirmation email
             String[] correos = [correoUsuario]
             correoService.enviarEmail(correos, "VOLANTE DE RESERVACION \n", "HOLA, para procesar la reserva completamente favor de hacer un deposito a la siguiente cuenta")
-
             render(text: "true")
         } catch (e) {
             log.error("Error al salvar la reserva", e)

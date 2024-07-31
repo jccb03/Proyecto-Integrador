@@ -101,8 +101,9 @@ class GeneralService {
                 idfecha: idfecha,
                 estado: true
         )
-        println("tReserva": tReserva)
-        tReserva.save(failOnError: true)
+//        println("tReserva": tReserva)
+        tReserva.save(failOnError: true);
+        return  tReserva;
     }
 
 

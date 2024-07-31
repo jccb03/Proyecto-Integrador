@@ -20,12 +20,12 @@ class TReserva {
 
     static constraints = {
         estado nullable: true
-        oferta nullable: false
-        totalPersonas nullable: false
+        oferta nullable: true
+        totalPersonas nullable: true
 //        idtour nullable: false
 //        idcliente nullable: false
-        idfecha nullable: false
-        totalPersonas nullable: false
+        idfecha nullable: true
+        totalPersonas nullable: true
 
 
     }

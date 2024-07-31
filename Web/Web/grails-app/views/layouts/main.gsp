@@ -71,14 +71,15 @@
         <div class="row">
             <div class="col-12">
                 <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
+%{--                    <!-- ***** Logo Start ***** -->--}%
                     <a href="/turismo-facil/home" class="logo">
-                        <asset:image src="assets/images/logo.png" alt=""/>
+                        <asset:image src="assets/images/palmera1.png" alt=""/>
+
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="./home" class="active">Home</a></li>
+                        <li><a href="/turismo-facil/home" class="active">Home</a></li>
                         <g:if test="${session.usuario}">
                             <g:if test="${((turismo.TUsuarios) session.usuario).administrador == true}">
                                 <li class="nav-item">

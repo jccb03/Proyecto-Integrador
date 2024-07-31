@@ -195,6 +195,7 @@
                                                                 </div>
                                                             </g:if>
                                                         </g:if>
+
                                                     </div>
                                                 </div>
 
@@ -304,6 +305,8 @@ let currentIndex = 0;
                         }
                     });
                 }
+
+
     </script>
 <asset:javascript src="assets/misJS/organizarTours.js"/>
 <asset:javascript src="assets/misJS/reservaTour.js"/>
