@@ -153,6 +153,9 @@
 
     console.log("${reservasUnicas}");
 
+    function editar_tour(id){
+        location.href = "./toursAdm/infoTour/editarTourinfo?id="+id;
+    }
 
 
 </script>

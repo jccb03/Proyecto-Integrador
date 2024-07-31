@@ -14,7 +14,9 @@ function salvarReserva() {
                 Swal.fire({
                     title: '¡Reserva creada exitosamente! Se le enviará un mensaje al correo para completar el proceso de reserva.',
                     showConfirmButton: false,
-                    timer: 3500
+                    didOpen: () => {
+                            Swal.showLoading()
+                    }
                 }).then((result) => {
                     // Redireccionar después de que se cierre la alerta
                     if (result.dismiss === Swal.DismissReason.timer) {
@@ -37,6 +39,11 @@ function salvarReserva() {
                 confirmButtonText: 'Ok'
             });
         });
+
+        setTimeout(() => {
+            // Cerrar el cargador
+            Swal.close();
+            },3000)
 }
 
 
