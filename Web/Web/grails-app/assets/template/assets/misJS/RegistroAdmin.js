@@ -1,18 +1,48 @@
-let _id =0;
 function salvar_usuario() {
+
+    let usuario = $("#usuario").val();
+    let nombre = $("#nombre").val();
+    let apellido = $("#apellido").val();
+    let telefono = document.getElementById("telefono").value;
+    let correo = $("#correo").val();
+    let clave = $("#clave").val();
+    let cedula = $("#cedula").val();
+
+    if (!usuario || !nombre || !apellido || !telefono || !correo || !clave || !cedula) {
+        Swal.fire({
+            title: 'Campos incompletos',
+            text: 'Por favor, completa todos los campos antes de enviar.',
+            confirmButtonText: 'Ok'
+        });
+        return;
+    }
+
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(correo)) {
+            Swal.fire({
+                title: 'Correo inválido',
+                text: 'El correo electrónico ingresado no es válido.',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                          $("#correo").focus(); // Hacer foco en el campo de correo
+                      });
+            return;
+        }
+
     let params = {
-        // asegúrate de que los valores se están extrayendo correctamente
-        usuario: $("#usuario").val(),
-        nombre: $("#nombre").val(),
-        apellido: $("#apellido").val(),
-        telefono: document.getElementById("telefono").value,
-        correo: $("#correo").val(),
-        clave: $("#clave").val(),
-        cedula: $("#cedula").val(),
+        usuario: usuario,
+        nombre: nombre,
+        apellido: apellido,
+        telefono: telefono,
+        correo: correo,
+        clave: clave,
+        cedula: cedula,
         administrador: true,
-        estado : true
+        estado: true
     };
-    console.log(params)
+
+    console.log(params); // Para verificar que los parámetros se están enviando correctamente
+
     $.post(window.location.pathname + "/salvar_admin", params)
         .then((response) => {
             if (response === "true") {
@@ -39,11 +69,4 @@ function salvar_usuario() {
                 confirmButtonText: 'Ok'
             });
         });
-
 }
-
-
-
-// function redirectARegistro() {
-//     window.location.href = "/registrar_usuario";
-// }

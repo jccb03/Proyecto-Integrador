@@ -1,16 +1,43 @@
-let _id =0;
 function salvar_usuario() {
+    let usuario = $("#usuario").val();
+    let nombre = $("#nombre").val();
+    let clave = $("#clave").val();
+    let apellido = $("#apellido").val();
+    let correo = $("#correo").val();
+    let telefono = $("#telefono").val();
+    let cedula = $("#cedula").val();
+
+    if (!usuario || !nombre || !clave || !apellido || !correo || !telefono || !cedula) {
+        Swal.fire({
+            title: 'Campos incompletos',
+            text: 'Por favor, completa todos los campos antes de enviar.',
+            confirmButtonText: 'Ok'
+        });
+        return;
+    }
+
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(correo)) {
+            Swal.fire({
+                title: 'Correo inválido',
+                text: 'El correo electrónico ingresado no es válido.',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                          $("#correo").focus(); // Hacer foco en el campo de correo
+                      });
+            return;
+        }
+
     let params = {
-        // asegúrate de que los valores se están extrayendo correctamente
-        usuario: $("#usuario").val(),
-        nombre: $("#nombre").val(),
-        clave: $("#clave").val(),
-        apellido: $("#apellido").val(),
-        correo: $("#correo").val(),
-        telefono: $("#telefono").val(),
+        usuario: usuario,
+        nombre: nombre,
+        clave: clave,
+        apellido: apellido,
+        correo: correo,
+        telefono: telefono,
         administrador: false,
-        cedula: $("#cedula").val(),
-        estado : true
+        cedula: cedula,
+        estado: true
     };
 
     $.post(window.location.pathname + "/salvar_usuario", params)
@@ -21,7 +48,7 @@ function salvar_usuario() {
                     showConfirmButton: false,
                     timer: 1500
                 }).then(() => {
-                    location.href = "./turismo-facil"
+                    location.href = "./turismo-facil";
                 });
             } else {
                 Swal.fire({
@@ -39,8 +66,8 @@ function salvar_usuario() {
                 confirmButtonText: 'Ok'
             });
         });
-
 }
+
 
 // function redirectARegistro() {
 //     window.location.href = "/registrar_usuario";
