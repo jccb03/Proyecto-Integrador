@@ -60,8 +60,12 @@
                                 <h2>${tour.fDescripcion}</h2>
                             </g:else>
                             <h1>${tour.fNombre}</h1>
-
-                            <div class="border-button"><a href="./reservaTour?id=${tour.id}">Ir</a></div>
+                            <g:if test="${session.usuario}">
+                                <div class="border-button"><a href="./reservaTour?id=${tour.id}">Ir</a></div>
+                            </g:if>
+                            <g:else>
+                                <div class="border-button"><a href="#" onclick="noLog()">Ir</a></div>
+                            </g:else>
                         </div>
 
                         <div class="container">
@@ -305,6 +309,17 @@ let currentIndex = 0;
                         }
                     });
                 }
+
+        function noLog(){
+            event.preventDefault();
+            Swal.fire({
+                title: 'Aviso',
+                text: 'Para ver los detalles o reservar un tour, necesita iniciar sesion',
+                confirmButtonText: 'Ok'
+            }).then(()=>{
+                location.href = "./login";
+            });
+        }
 
 
     </script>
